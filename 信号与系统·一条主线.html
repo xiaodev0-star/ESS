@@ -524,7 +524,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     <div class="topbar-actions">
       <button class="icon-btn" id="tocBtn" type="button" title="目录 (T)">目录</button>
       <button class="icon-btn" id="exerciseBtn" type="button" title="习题 (Q)">习题</button>
-      <button class="icon-btn" id="gridBtn" type="button" title="总览 (O)">总览</button>
       <button class="icon-btn" id="fsBtn" type="button" title="全屏 (F)">全屏</button>
       <button class="icon-btn" id="helpBtn" type="button" title="快捷键 (?)">?</button>
     </div>
@@ -4520,11 +4519,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     </footer>
   </div>
 </section>
-<section class="slide layout-wide" data-act="07 收束" data-title="习题：一次做完">
+<section class="slide layout-wide" data-act="07 收束" data-title="习题">
   <div class="slide-inner">
     <header class="slide-head">
       <div class="kicker">07 收束</div>
-      <h2>习题：一次做完</h2>
+      <h2>习题</h2>
     </header>
     <div class="slide-body">
       
@@ -4741,20 +4740,10 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   </div>
 </div>
 
-<div class="overlay" id="gridOverlay" aria-hidden="true" role="dialog" aria-label="总览">
-  <div class="overlay-panel">
-    <div class="overlay-head">
-      <div><div class="kicker">overview</div><h2>跳到任意一页</h2></div>
-      <button class="overlay-close" type="button">关闭 Esc</button>
-    </div>
-    <div class="grid-cards" id="gridCards"></div>
-  </div>
-</div>
-
 <div class="overlay" id="exerciseOverlay" aria-hidden="true" role="dialog" aria-label="习题">
   <div class="overlay-panel exercise-panel">
     <div class="overlay-head">
-      <div><div class="kicker">exercises</div><h2>习题 · 一次做完</h2></div>
+      <div><div class="kicker">exercises</div><h2>习题</h2></div>
       <button class="overlay-close" type="button">关闭 Esc</button>
     </div>
     <div class="exercise-meta"><span id="exProgress">1 / 27</span><select id="exChapter" aria-label="选择章节"></select><span id="exScore">0 / 27</span></div>
@@ -4778,7 +4767,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
       <div class="help-row"><span>上一页</span><span><kbd>←</kbd> <kbd>↑</kbd></span></div>
       <div class="help-row"><span>目录</span><span><kbd>T</kbd></span></div>
       <div class="help-row"><span>习题页</span><span><kbd>Q</kbd></span></div>
-      <div class="help-row"><span>总览</span><span><kbd>O</kbd></span></div>
       <div class="help-row"><span>全屏</span><span><kbd>F</kbd></span></div>
       <div class="help-row"><span>回到封面 / 末页</span><span><kbd>Home</kbd> <kbd>End</kbd></span></div>
       <div class="help-row"><span>手机翻页</span><span>左右滑动</span></div>
@@ -4844,7 +4832,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   const prevBtn = $('#prevBtn');
   const nextBtn = $('#nextBtn');
   const tocOverlay = $('#tocOverlay');
-  const gridOverlay = $('#gridOverlay');
   const helpOverlay = $('#helpOverlay');
   const exerciseOverlay = $('#exerciseOverlay');
   const exProgress = $('#exProgress');
@@ -4878,12 +4865,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     }).join('');
     return `<div class="toc-act"><h3>${a.name}</h3>${links}</div>`;
   }).join('');
-
-  // overview grid
-  const gridCards = $('#gridCards');
-  gridCards.innerHTML = slides.map((s, i) =>
-    `<button class="grid-card" type="button" data-i="${i}"><span class="n">${String(i+1).padStart(2,'0')} · ${s.dataset.act || ''}</span><span class="t">${s.dataset.title || ''}</span></button>`
-  ).join('');
 
   function renderMath(slide){
     if (mathRendered.has(slide)) return;
@@ -4932,7 +4913,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
       const hash = '#s' + (i + 1);
       if (location.hash !== hash) history.replaceState(null, '', hash);
     }
-    $$('.grid-card', gridCards).forEach((c, k) => c.classList.toggle('current', k === i));
     $$('#tocGrid .toc-link').forEach(l => {
       const isCur = parseInt(l.dataset.i, 10) === i;
       l.classList.toggle('current', isCur);
@@ -4958,7 +4938,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     if (first) setTimeout(() => first.focus(), 30);
   }
   function closeOverlays(){
-    [tocOverlay, gridOverlay, helpOverlay, exerciseOverlay].forEach(el => {
+    [tocOverlay, helpOverlay, exerciseOverlay].forEach(el => {
       el.classList.remove('open');
       el.setAttribute('aria-hidden', 'true');
     });
@@ -4967,13 +4947,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     openOverlay(tocOverlay);
     setTimeout(() => {
       const cur = $('#tocGrid .toc-link.current');
-      if (cur) cur.scrollIntoView({ block: 'center' });
-    }, 40);
-  }
-  function openGrid(){
-    openOverlay(gridOverlay);
-    setTimeout(() => {
-      const cur = $('#gridCards .grid-card.current');
       if (cur) cur.scrollIntoView({ block: 'center' });
     }, 40);
   }
@@ -5057,7 +5030,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   }
   $('#tocBtn').addEventListener('click', openToc);
   $('#exerciseBtn').addEventListener('click', openExercise);
-  $('#gridBtn').addEventListener('click', openGrid);
   $('#helpBtn').addEventListener('click', () => openOverlay(helpOverlay));
   const openExerciseBtn = $('#openExerciseBtn');
   if (openExerciseBtn) openExerciseBtn.addEventListener('click', openExercise);
@@ -5066,7 +5038,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   $('#exReset').addEventListener('click', resetAllExercises);
   if (exChapter) exChapter.addEventListener('change', () => setChapter(exChapter.value));
   $$('.overlay-close').forEach(b => b.addEventListener('click', closeOverlays));
-  [tocOverlay, gridOverlay, helpOverlay, exerciseOverlay].forEach(o => {
+  [tocOverlay, helpOverlay, exerciseOverlay].forEach(o => {
     o.addEventListener('click', e => { if (e.target === o) closeOverlays(); });
   });
   document.addEventListener('click', e => {
@@ -5102,7 +5074,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     else if (k === 'End') { e.preventDefault(); go(total - 1, true); }
     else if (k === 't' || k === 'T') { e.preventDefault(); openToc(); }
     else if (k === 'q' || k === 'Q') { e.preventDefault(); openExercise(); }
-    else if (k === 'o' || k === 'O') { e.preventDefault(); openGrid(); }
     else if (k === '?' || k === '/') { e.preventDefault(); openOverlay(helpOverlay); }
     else if (k === 'f' || k === 'F') { e.preventDefault(); $('#fsBtn').click(); }
   });
