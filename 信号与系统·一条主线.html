@@ -385,6 +385,21 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
 .exercise-nav .reset-quiz{margin-left:auto}
 #exerciseBank .quiz-q{font-size:calc(var(--fs-h3) * .98)}
 #exerciseBank .quiz-top{display:none}
+.exercise-item{padding:.15rem 0 .35rem}
+.ex-top{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--muted);margin-bottom:.45rem}
+.ex-badge{border:1px solid var(--line-strong);padding:.1em .5em;color:var(--ink);background:rgba(255,255,255,.35)}
+.ex-src{letter-spacing:.04em}
+.ex-idx{margin-left:auto;color:var(--muted)}
+.ex-q{font-size:calc(var(--fs-h3) * .9);line-height:1.6;color:var(--ink)}
+.ex-q p{margin:.28rem 0}
+.ex-toggle{margin-top:.6rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;border:1px solid var(--line-strong);background:transparent;color:var(--ink);padding:.34em .85em;cursor:pointer;border-radius:2px;transition:background .2s,color .2s}
+.ex-toggle:hover{background:var(--ink);color:var(--paper)}
+.ex-sol{display:none;margin-top:.7rem;border-top:1px dashed var(--line-strong);padding-top:.55rem;font-size:.92rem;line-height:1.62;color:var(--ink-2)}
+.ex-sol.show{display:block}
+.ex-sol p{margin:.35rem 0}
+.ex-sol .ans{color:var(--accent);font-weight:600}
+.ex-sol .katex-display{margin:.4em 0}
+.ex-hint{letter-spacing:.02em}
 .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:.5rem .8rem;z-index:100}
 .skip:focus{left:.5rem;top:.5rem}
 
@@ -479,9 +494,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   #exerciseBank .option{padding:.3rem .5rem}
   #exerciseBank .quiz-foot{margin-top:.2rem}
   .exercise-nav{margin-top:.5rem;padding-top:.35rem}
+  .ex-q{font-size:.95rem;line-height:1.45}
+  .ex-sol{font-size:.88rem;line-height:1.5}
+  .ex-top{font-size:.54rem;gap:.35rem}
+  .ex-toggle{font-size:.58rem;padding:.3em .7em}
   .cover-title{font-size:clamp(2.2rem,5.2vw,4.5rem)}
   .cover-sub{margin-top:.6rem}
   .cover-meta{margin-top:.8rem}
+}
+@media (max-width: 480px){
+  #exerciseBank .katex{font-size:.92em}
 }
 @media (max-height: 560px) and (min-width: 821px){
   .slide-inner{padding-top:.38rem;padding-bottom:.28rem}
@@ -552,7 +574,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     <h1 class="cover-title">信号与系统</h1>
     <p class="cover-sub">从基本信号、运算与分解，到 LTI 系统、卷积，再到傅里叶级数与频谱。</p>
     <div class="cover-rule"></div>
-    <div class="cover-meta"><span>连续 / 离散</span><span>时域 / 频域</span><span>106 页</span><span>27 道习题</span></div>
+    <div class="cover-meta"><span>连续 / 离散</span><span>时域 / 频域</span><span>106 页</span><span>41 道例题与习题</span></div>
   </div>
   <div class="cover-fig"><svg class="fig-svg " viewBox="0 0 620 500" role="img" aria-label="一个信号在时域与频域的两幅画像">
       <line class="grid" x1="28" y1="250" x2="592" y2="250"/>
@@ -1263,106 +1285,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     </footer>
   </div>
 </section>
-<section class="slide layout-quiz" data-act="01 信号" data-title="阶段自测 · 1">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">01 信号</div>
-      <h2>阶段自测 · 1</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a1q1">
-  <div class="quiz-top"><span class="tag">自测 · 周期性</span></div>
-  <div class="quiz-q">下列哪个信号是周期信号？</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(\sin 2t+\cos 3t\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(\cos 2t+\sin\pi t\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(\sin(2k)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(\cos(k/6)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(\sin 2t\) 的周期为 \(\pi\)，\(\cos 3t\) 的周期为 \(2\pi/3\)，比值为 \(3/2\)（有理数），公共周期 \(2\pi\)。另外三个的周期比都是无理数。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">01 信号</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="01 信号" data-title="阶段自测 · 2">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">01 信号</div>
-      <h2>阶段自测 · 2</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a1q2">
-  <div class="quiz-top"><span class="tag">自测 · 线性与时不变</span></div>
-  <div class="quiz-q">系统 \(y(t)=t^2 f(t)\) 的性质是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">线性、时不变</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">线性、时变</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">非线性、时不变</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">非线性、时变</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">对 \(f\) 而言，乘以 \(t^2\) 满足齐次性与叠加性，所以线性；但系数显含 \(t\)，输入延时后输出不会同样延时，所以时变。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">01 信号</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="01 信号" data-title="补充自测 · 功率信号">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">01 信号</div>
-      <h2>补充自测 · 功率信号</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a1q3">
-  <div class="quiz-top"><span class="tag">补充自测 · 能量/功率</span></div>
-  <div class="quiz-q">下列信号中，属于功率信号的是：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(e^{-2t}u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(t u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(e^{-t}\cos t\,u(t)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(u(t)\) 的能量无限、平均功率为 \(1/2\)（按双边定义），是功率信号。两个指数衰减信号是能量信号；\(t u(t)\) 的能量和功率都无限。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">01 信号</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="01 信号" data-title="补充自测 · 因果性">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">01 信号</div>
-      <h2>补充自测 · 因果性</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a1q4">
-  <div class="quiz-top"><span class="tag">补充自测 · 因果性</span></div>
-  <div class="quiz-q">下列系统中，属于因果系统的是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">\(y(t)=f(t+1)\)</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">\(y(t)=f(t-1)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(y(t)=f(2t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(y(t)=f(-t)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">因果系统的输出只依赖当前和过去的输入。\(f(t-1)\) 只用过去值；\(f(t+1)\) 用了未来值，是非因果的。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">01 信号</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
 <section class="slide layout-statement" data-act="02 基本信号" data-title="系统只认识几种“字母”">
   <div class="slide-inner">
     <header class="slide-head">
@@ -2060,106 +1982,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     </footer>
   </div>
 </section>
-<section class="slide layout-quiz" data-act="02 基本信号" data-title="阶段自测 · 3">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">02 基本信号</div>
-      <h2>阶段自测 · 3</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a2q1">
-  <div class="quiz-top"><span class="tag">自测 · 离散周期</span></div>
-  <div class="quiz-q">下列序列中，哪一个是周期序列？</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(\cos(k\pi/6)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(\cos(k/6)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(\sin(2k)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(\cos(k/6)+\sin(2k)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(\cos(k\pi/6)\) 的 \(\Omega_0/2\pi=1/12\) 是有理数，\(N=12\)。其余三个的 \(\Omega_0/2\pi\) 都是无理数。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">02 基本信号</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="02 基本信号" data-title="阶段自测 · 4">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">02 基本信号</div>
-      <h2>阶段自测 · 4</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a2q2">
-  <div class="quiz-top"><span class="tag">自测 · 冲激展缩</span></div>
-  <div class="quiz-q">\(\delta(2t)\) 等于：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">\(\delta(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(2\delta(t)\)</span></button><button class="option" type="button" data-correct="true"><span class="key">C</span><span class="opt-text">\(\frac12\delta(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(\delta(t/2)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">由展缩特性 \(\delta(at)=\frac{1}{|a|}\delta(t)\)，取 \(a=2\) 得 \(\delta(2t)=\frac12\delta(t)\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">02 基本信号</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="02 基本信号" data-title="补充自测 · 冲激取样">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">02 基本信号</div>
-      <h2>补充自测 · 冲激取样</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a2q3">
-  <div class="quiz-top"><span class="tag">补充自测 · 冲激取样</span></div>
-  <div class="quiz-q">\[\int_{-\infty}^{\infty}f(t)\delta(t-t_0)\,\mathrm{d}t\] 等于：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(f(t_0)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(f(0)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(\delta(t_0)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(1\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">这是冲激的取样特性：与 \(\delta(t-t_0)\) 相乘后积分，只留下 \(t=t_0\) 处的函数值。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">02 基本信号</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="02 基本信号" data-title="补充自测 · 离散差分">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">02 基本信号</div>
-      <h2>补充自测 · 离散差分</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a2q4">
-  <div class="quiz-top"><span class="tag">补充自测 · 离散差分</span></div>
-  <div class="quiz-q">\(u[k]-u[k-1]\) 等于：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(\delta[k]\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(u[k]\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(r[k]\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(1\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">两个单位阶跃相减，只在 \(k=0\) 处留下 1，其余为 0，正是单位脉冲 \(\delta[k]\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">02 基本信号</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
 <section class="slide layout-statement" data-act="03 运算" data-title="信号可以被“搬动”和“改造”">
   <div class="slide-inner">
     <header class="slide-head">
@@ -2515,56 +2337,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     </footer>
   </div>
 </section>
-<section class="slide layout-quiz" data-act="03 运算" data-title="阶段自测 · 5">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">03 运算</div>
-      <h2>阶段自测 · 5</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a3q1">
-  <div class="quiz-top"><span class="tag">自测 · 复合变换</span></div>
-  <div class="quiz-q">把 \(f(t)\) 变成 \(f(2t-4)\)，正确的操作顺序是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">先右移 4，再压缩 2 倍</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">先压缩 2 倍，再右移 2</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">先左移 2，再压缩 2 倍</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">先翻转，再右移 4</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(f(2t-4)=f(2(t-2))\)：先时间压缩 2 倍，再右移 2。也可以先右移 4 再压缩 2 倍，但选项中没有这个说法；按“先缩后移”的标准步骤，右移量是 2。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">03 运算</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="03 运算" data-title="阶段自测 · 6">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">03 运算</div>
-      <h2>阶段自测 · 6</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a3q2">
-  <div class="quiz-top"><span class="tag">自测 · 离散移位</span></div>
-  <div class="quiz-q">对序列 \(f[k]\) 做 \(f[k-2]\)，相当于：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">左移 2</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">右移 2</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">翻转</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">抽取</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(f[k-n]\) 表示右移 \(n\)。\(f[k-2]\) 把每个样本搬到 \(k+2\) 的位置，所以是右移 2。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">03 运算</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
 <section class="slide layout-wide" data-act="04 分解" data-title="分解：把未知拆成已知">
   <div class="slide-inner">
     <header class="slide-head">
@@ -2749,106 +2521,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     </div>
     <footer class="slide-foot">
       <span class="foot-note">04 分解</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="04 分解" data-title="阶段自测 · 7">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">04 分解</div>
-      <h2>阶段自测 · 7</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a4q1">
-  <div class="quiz-top"><span class="tag">自测 · 奇偶分解</span></div>
-  <div class="quiz-q">单位阶跃 \(u(t)\) 的偶分量 \(u_e(t)\) 是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">\(u(t)\)</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">\(\frac12\)（对所有 t）</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(\frac12\operatorname{sgn}(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(\delta(t)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(u_e(t)=\frac{u(t)+u(-t)}{2}\)。对 \(t\ne0\)，\(u(t)\) 与 \(u(-t)\) 一个为 1、一个为 0，相加除以 2 恒为 \(\frac12\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">04 分解</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="04 分解" data-title="阶段自测 · 8">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">04 分解</div>
-      <h2>阶段自测 · 8</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a4q2">
-  <div class="quiz-top"><span class="tag">自测 · 分解的用途</span></div>
-  <div class="quiz-q">冲激分解 \(f(t)=\int f(\tau)\delta(t-\tau)\dd\tau\) 的直接用途是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">求信号的频谱</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">把任意输入表示成冲激的叠加，进而用 h(t) 求响应</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">判断系统是否稳定</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">求信号的能量</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">冲激分解把任意输入写成延迟冲激的加权和；LTI 系统对每个冲激的响应是 \(h(t-\tau)\)，叠加后就是卷积 \(y=f*h\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">04 分解</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="03 运算" data-title="补充自测 · 复合变换">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">03 运算</div>
-      <h2>补充自测 · 复合变换</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a3q3">
-  <div class="quiz-top"><span class="tag">补充自测 · 复合变换</span></div>
-  <div class="quiz-q">把 \(f(t)\) 变成 \(f(3-2t)\)，按“先缩放、再翻转、最后平移”的顺序，平移量是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">左移 3</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">右移 3</span></button><button class="option" type="button" data-correct="true"><span class="key">C</span><span class="opt-text">右移 1.5</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">左移 1.5</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(f(3-2t)=f(-2(t-1.5))\)：先把时间压缩 2 倍，再翻转，最后右移 1.5。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">03 运算</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="03 运算" data-title="补充自测 · 离散移位">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">03 运算</div>
-      <h2>补充自测 · 离散移位</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a3q4">
-  <div class="quiz-top"><span class="tag">补充自测 · 离散移位</span></div>
-  <div class="quiz-q">\(f[k+2]\) 相当于：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">左移 2</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">右移 2</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">翻转</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">抽取</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(f[k+n]\) 表示左移 \(n\)。\(f[k+2]\) 把每个样本搬到 \(k-2\) 的位置，所以是左移 2。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">03 运算</span>
       <span class="page-no"></span>
     </footer>
   </div>
@@ -3526,106 +3198,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
 </div>
 <div class="note ">检查量纲与初值：\(t=0\) 时 \(y_f=0\)，符合零状态；\(t\to\infty\) 时 \(y_f\to2\)，与直流增益 \(2/3\times3=2\) 一致。</div>
 
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">05 LTI</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="05 LTI" data-title="阶段自测 · 9">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">05 LTI</div>
-      <h2>阶段自测 · 9</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a5q1">
-  <div class="quiz-top"><span class="tag">自测 · 冲激响应</span></div>
-  <div class="quiz-q">系统 \(y'+3y=2f\) 的冲激响应是：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(2e^{-3t}u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(e^{-3t}u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(2e^{3t}u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(2\delta(t)-6e^{-3t}u(t)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">一阶方程 \(y'+ay=bf\) 的冲激响应为 \(b e^{-at}u(t)\)。这里 \(a=3,b=2\)，所以 \(h=2e^{-3t}u(t)\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">05 LTI</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="05 LTI" data-title="阶段自测 · 10">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">05 LTI</div>
-      <h2>阶段自测 · 10</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a5q2">
-  <div class="quiz-top"><span class="tag">自测 · 卷积</span></div>
-  <div class="quiz-q">\(u(t)*u(t)\) 等于：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">\(u(t)\)</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">\(r(t)=t u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(\delta(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(\frac12t^2u(t)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(\int_0^t 1\cdot1\,\dd\tau=t\)（\(t\ge0\)），所以 \(u*u=r(t)\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">05 LTI</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="05 LTI" data-title="阶段自测 · 11">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">05 LTI</div>
-      <h2>阶段自测 · 11</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a5q3">
-  <div class="quiz-top"><span class="tag">自测 · 时移</span></div>
-  <div class="quiz-q">已知 \(y=f*h\)，则 \(f(t-2)*h(t-3)\) 等于：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(y(t-5)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(y(t-1)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(y(t+5)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(y(t)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">时移性质：\(f(t-t_1)*h(t-t_2)=y(t-t_1-t_2)\)。这里 \(t_1=2,t_2=3\)，所以是 \(y(t-5)\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">05 LTI</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="05 LTI" data-title="补充自测 · 与 δ 卷积">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">05 LTI</div>
-      <h2>补充自测 · 与 δ 卷积</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a5q4">
-  <div class="quiz-top"><span class="tag">补充自测 · 与 δ 卷积</span></div>
-  <div class="quiz-q">\(f(t)*\delta(t-3)\) 等于：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(f(t-3)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(f(t+3)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(f(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(\delta(t-3)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">δ 是卷积的单位元：\(f(t)*\delta(t)=f(t)\)；延迟 δ 把结果同样延迟，\(f(t)*\delta(t-3)=f(t-3)\)。</div>
-</div>
     </div>
     <footer class="slide-foot">
       <span class="foot-note">05 LTI</span>
@@ -4335,131 +3907,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     </footer>
   </div>
 </section>
-<section class="slide layout-quiz" data-act="06 频域" data-title="阶段自测 · 12">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">06 频域</div>
-      <h2>阶段自测 · 12</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a6q1">
-  <div class="quiz-top"><span class="tag">自测 · 方波频谱</span></div>
-  <div class="quiz-q">周期方波（奇对称）的傅里叶级数中，含有：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">直流 + 余弦</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">只有正弦，且只有奇次</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">只有余弦，且只有偶次</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">正弦与余弦都有</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">方波是奇函数，所以 \(a_0=0,a_n=0\)，只剩正弦；又满足半波镜像 \(f(t\pm T/2)=-f(t)\)，所以只有奇次谐波。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">06 频域</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="06 频域" data-title="阶段自测 · 13">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">06 频域</div>
-      <h2>阶段自测 · 13</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a6q2">
-  <div class="quiz-top"><span class="tag">自测 · 矩形脉冲</span></div>
-  <div class="quiz-q">周期矩形脉冲的傅里叶系数 \(F_n\) 是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">\(\frac{2A\tau}{T}\Sa(n\omega_0\tau)\)</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">\(\frac{A\tau}{T}\Sa\left(\frac{n\omega_0\tau}{2}\right)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(\frac{A}{T}\Sa(n\omega_0\tau)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(\frac{A\tau}{T}\cos(n\omega_0\tau)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">对宽度 \(\tau\)、中心在 0 的矩形脉冲积分，得到 \(F_n=\frac{A\tau}{T}\Sa(\frac{n\omega_0\tau}{2})\)。注意括号里的 \(1/2\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">06 频域</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="06 频域" data-title="阶段自测 · 14">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">06 频域</div>
-      <h2>阶段自测 · 14</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a6q3">
-  <div class="quiz-top"><span class="tag">自测 · 功率</span></div>
-  <div class="quiz-q">\(f(t)=4+6\cos\omega_0t+4\cos2\omega_0t\) 的平均功率是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">26</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">42</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">58</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">16</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">直流功率 \(4^2=16\)；两个余弦的功率分别是 \(6^2/2=18\) 和 \(4^2/2=8\)；总计 \(16+18+8=42\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">06 频域</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="06 频域" data-title="阶段自测 · 15">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">06 频域</div>
-      <h2>阶段自测 · 15</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a6q4">
-  <div class="quiz-top"><span class="tag">自测 · 带宽</span></div>
-  <div class="quiz-q">脉冲宽度 \(\tau\) 减小时，其频谱的有效带宽：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">变窄</span></button><button class="option" type="button" data-correct="true"><span class="key">B</span><span class="opt-text">变宽</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">不变</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">先变宽后变窄</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">有效带宽约为 \(0\sim2\pi/\tau\)。\(\tau\) 越小，\(2\pi/\tau\) 越大，带宽越宽。时域越窄，频域越宽。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">06 频域</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="06 频域" data-title="补充自测 · 偶对称">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">06 频域</div>
-      <h2>补充自测 · 偶对称</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a6q5">
-  <div class="quiz-top"><span class="tag">补充自测 · 对称性</span></div>
-  <div class="quiz-q">偶对称周期信号的傅里叶级数中，只含有：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">直流 + 余弦</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">只有正弦</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">只有奇次谐波</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">直流 + 偶次谐波</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">偶函数 \(f(t)=f(-t)\) 的 \(b_n=0\)，所以只含直流与余弦项；奇次/偶次是半波对称讨论的内容，不要混用。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">06 频域</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
 <section class="slide layout-figure" data-act="07 收束" data-title="把整门课压成一张图">
   <div class="slide-inner">
     <header class="slide-head">
@@ -4542,14 +3989,14 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     <div class="slide-body">
       
 <div class="prose">
-  <p class="lede">27 道自测已经汇总成一个习题页：按章节筛选、逐题作答、即时反馈、自动计分。</p>
+  <p class="lede">41 道来自全部课件的例题与习题已经汇总成一个习题页：按章节筛选、逐题展开详细解析。</p>
 </div>
 <div class="grid-3">
-  <div class="card"><h3>按章节练习</h3><p>5 个章节，27 道题，可筛选。</p></div>
-  <div class="card"><h3>即时反馈</h3><p>选完立刻看到对错与解析。</p></div>
-  <div class="card"><h3>自动计分</h3><p>最后回到收束页看总分。</p></div>
+  <div class="card"><h3>按章节整理</h3><p>5 个章节，41 道题，可筛选。</p></div>
+  <div class="card"><h3>全部配详解</h3><p>每道题都有完整步骤、关键公式与答案。</p></div>
+  <div class="card"><h3>覆盖全部课件</h3><p>从信号周期性到傅里叶级数，一页收齐。</p></div>
 </div>
-<button class="action-btn" id="openExerciseBtn" type="button">打开习题页 <span>→</span></button>
+<button class="action-btn" id="openExerciseBtn" type="button">打开例题与习题页 <span>→</span></button>
 
     </div>
     <footer class="slide-foot">
@@ -4578,106 +4025,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   <tr><td>FS 系数丢 \(2/T\)</td><td>三角级数系数有 \(2/T\)；复指数系数有 \(1/T\)。</td></tr>
 </table>
 
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">07 收束</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="07 收束" data-title="最终自测 · 1">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">07 收束</div>
-      <h2>最终自测 · 1</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a7q1" data-chapter="01 信号与系统">
-  <div class="quiz-top"><span class="tag">最终自测 · 能量/功率</span></div>
-  <div class="quiz-q">下列信号中，属于能量信号的是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">\(u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(\sin\omega_0t\)</span></button><button class="option" type="button" data-correct="true"><span class="key">C</span><span class="opt-text">\(e^{-2t}u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(t u(t)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(e^{-2t}u(t)\) 的 \(\int_0^\infty e^{-4t}\dd t=1/4&lt;\infty\)，功率为 0，是能量信号。\(u(t)\)、正弦是功率信号；\(t u(t)\) 两者都不是。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">07 收束</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="07 收束" data-title="最终自测 · 2">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">07 收束</div>
-      <h2>最终自测 · 2</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a7q2" data-chapter="02 基本信号">
-  <div class="quiz-top"><span class="tag">最终自测 · 冲激</span></div>
-  <div class="quiz-q">\(\delta(3t-6)\) 等于：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">\(\delta(t-2)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(3\delta(t-2)\)</span></button><button class="option" type="button" data-correct="true"><span class="key">C</span><span class="opt-text">\(\frac13\delta(t-2)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(\delta(t-6)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">\(\delta(3t-6)=\delta(3(t-2))=\frac13\delta(t-2)\)。先提公因子，再用展缩特性。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">07 收束</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="07 收束" data-title="最终自测 · 3">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">07 收束</div>
-      <h2>最终自测 · 3</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a7q3" data-chapter="05 傅里叶级数">
-  <div class="quiz-top"><span class="tag">最终自测 · 功率</span></div>
-  <div class="quiz-q">\(f(t)=2+4\cos\omega_0t+2\cos2\omega_0t\) 的平均功率是：</div>
-  <div class="options"><button class="option" type="button" data-correct="false"><span class="key">A</span><span class="opt-text">16</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">12</span></button><button class="option" type="button" data-correct="true"><span class="key">C</span><span class="opt-text">14</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">8</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">直流功率 \(2^2=4\)；余弦功率分别为 \(4^2/2=8\) 和 \(2^2/2=2\)；总计 \(4+8+2=14\)。</div>
-</div>
-    </div>
-    <footer class="slide-foot">
-      <span class="foot-note">07 收束</span>
-      <span class="page-no"></span>
-    </footer>
-  </div>
-</section>
-<section class="slide layout-quiz" data-act="07 收束" data-title="最终自测 · 4">
-  <div class="slide-inner">
-    <header class="slide-head">
-      <div class="kicker">07 收束</div>
-      <h2>最终自测 · 4</h2>
-    </header>
-    <div class="slide-body">
-      
-<div class="quiz" data-qid="a7q4" data-chapter="04 LTI 与卷积">
-  <div class="quiz-top"><span class="tag">最终自测 · 冲激响应</span></div>
-  <div class="quiz-q">系统 \(y'+2y=3f\) 的冲激响应是：</div>
-  <div class="options"><button class="option" type="button" data-correct="true"><span class="key">A</span><span class="opt-text">\(3e^{-2t}u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">B</span><span class="opt-text">\(e^{-2t}u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">C</span><span class="opt-text">\(3e^{2t}u(t)\)</span></button><button class="option" type="button" data-correct="false"><span class="key">D</span><span class="opt-text">\(3\delta(t)-6e^{-2t}u(t)\)</span></button></div>
-  <div class="quiz-foot">
-    <span class="quiz-status" aria-live="polite"></span>
-    <button class="reset-quiz" type="button">重做</button>
-  </div>
-  <div class="quiz-explain">一阶方程 \(y'+ay=bf\) 的冲激响应为 \(b e^{-at}u(t)\)。这里 \(a=2,b=3\)，所以 \(h=3e^{-2t}u(t)\)。</div>
-</div>
     </div>
     <footer class="slide-foot">
       <span class="foot-note">07 收束</span>
@@ -4720,7 +4067,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     <p class="lede" style="margin-top:1rem">把周期 \(T\) 推向无穷，谱线间隔 \(\omega_0=2\pi/T\) 趋于 0，离散谱就变成连续谱。这就是下一章的<b>傅里叶变换</b>。</p>
     <div class="formula big" style="margin-top:.8rem">\[ F(\mathrm{j}\omega)=\int_{-\infty}^{\infty}f(t)e^{-\mathrm{j}\omega t}\dd t,\qquad f(t)=\frac1{2\pi}\int_{-\infty}^{\infty}F(\mathrm{j}\omega)e^{\mathrm{j}\omega t}\dd\omega \]</div>
     <p class="small" style="margin-top:1rem">到那时，卷积会变成乘法：\(y(t)=f(t)*h(t)\ \Longleftrightarrow\ Y(\mathrm{j}\omega)=F(\mathrm{j}\omega)H(\mathrm{j}\omega)\)。今天学的级数，是那扇门的钥匙。</p>
-    <div class="cover-meta" style="margin-top:1.4rem"><span>本次学习</span><span data-score>0 / 0</span><span>自测正确</span></div>
+    <div class="cover-meta" style="margin-top:1.4rem"><span>本次学习</span><span>41 道</span><span>例题与习题 · 全部含详解</span></div>
   </div>
 </div>
 
@@ -4754,18 +4101,18 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   </div>
 </div>
 
-<div class="overlay" id="exerciseOverlay" aria-hidden="true" role="dialog" aria-label="习题">
+<div class="overlay" id="exerciseOverlay" aria-hidden="true" role="dialog" aria-label="例题与习题">
   <div class="overlay-panel exercise-panel">
     <div class="overlay-head">
-      <div><div class="kicker">exercises</div><h2>习题</h2></div>
+      <div><div class="kicker">examples &amp; exercises</div><h2>例题与习题</h2></div>
       <button class="overlay-close" type="button">关闭 Esc</button>
     </div>
-    <div class="exercise-meta"><span id="exProgress">1 / 27</span><select id="exChapter" aria-label="选择章节"></select><span id="exScore">0 / 27</span></div>
+    <div class="exercise-meta"><span id="exProgress">1 / 41</span><select id="exChapter" aria-label="选择章节"></select><span class="ex-hint">全部题目附详细解析</span></div>
     <div id="exerciseBank"></div>
     <div class="exercise-nav">
       <button class="nav-btn" id="exPrev" type="button" aria-label="上一题">←</button>
       <button class="nav-btn" id="exNext" type="button" aria-label="下一题">→</button>
-      <button class="reset-quiz" id="exReset" type="button">重做全部</button>
+      <button class="reset-quiz" id="exReset" type="button">收起全部解析</button>
     </div>
   </div>
 </div>
@@ -4809,23 +4156,584 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   };
   const CHAPTER_ORDER = ['01 信号与系统', '02 基本信号', '03 运算与分解', '04 LTI 与卷积', '05 傅里叶级数'];
 
-  // 把散布在正文里的自测题集中到习题页，并从叙事中移除
-  const exerciseBank = $('#exerciseBank');
-  Array.from(document.querySelectorAll('.slide.layout-quiz')).forEach(s => {
-    const q = s.querySelector('.quiz');
-    if (q) {
-      q.dataset.chapter = q.dataset.chapter || CHAPTER_MAP[s.dataset.act] || s.dataset.act || '综合';
-      exerciseBank.appendChild(q);
+  // 全部例题与习题（来源：8 份课件 PDF），每题附详细解析
+  const EXERCISES = [
+    {
+      ch: '01 信号与系统', type: '例题', src: '1.1 节 · 例1',
+      q: String.raw`<p>判断下列信号是否为周期信号，若是，求其周期。</p><p>(1) \(f_1(t)=\sin 2t+\cos 3t\)；&nbsp;&nbsp;(2) \(f_2(t)=\cos 2t+\sin \pi t\)。</p>`,
+      sol: String.raw`<p><b>思路：</b>两个周期信号之和仍为周期信号的条件是 \(T_1/T_2\) 为有理数，此时公共周期为 \(T_1,T_2\) 的最小公倍数。</p>
+<p>(1) \(\sin 2t\) 的周期 \(T_1=2\pi/2=\pi\)；\(\cos 3t\) 的周期 \(T_2=2\pi/3\)。因为</p>
+\[ \frac{T_1}{T_2}=\frac{\pi}{2\pi/3}=\frac32 \]
+<p>为有理数，所以 \(f_1(t)\) 是周期信号。取 3 个 \(\sin 2t\) 周期、2 个 \(\cos 3t\) 周期，公共周期 \(T=2\pi\)。</p>
+<p>(2) \(\cos 2t\) 的周期 \(T_1=\pi\)，\(\sin \pi t\) 的周期 \(T_2=2\)。因为</p>
+\[ \frac{T_1}{T_2}=\frac{\pi}{2} \]
+<p>为无理数，两个分量永远无法同时回到初相，故 \(f_2(t)\) 为非周期信号。</p>
+<p class="ans">答案：\(f_1(t)\) 是周期信号，周期 \(2\pi\)；\(f_2(t)\) 非周期。</p>`
+    },
+    {
+      ch: '01 信号与系统', type: '例题', src: '1.1 节 · 例3',
+      q: String.raw`<p>判断下列离散序列是否为周期信号，若是，确定其周期。</p><p>(1) \(f_1[k]=\sin(3\pi k/4)+\cos(0.5\pi k)\)；&nbsp;&nbsp;(2) \(f_2[k]=\sin(2k)\)。</p>`,
+      sol: String.raw`<p><b>思路：</b>离散正弦序列 \(\cos(\beta k)\) 的周期 \(N\) 是使 \(N=2\pi m/\beta\) 成立的最小正整数（\(m\) 取使 \(N\) 为整数的最小值）。</p>
+<p>(1) 对 \(\sin(3\pi k/4)\)：\(\beta_1=3\pi/4\)，</p>
+\[ \frac{2\pi}{\beta_1}=\frac{2\pi}{3\pi/4}=\frac83 \]
+<p>取 \(m=3\) 得 \(N_1=8\)。对 \(\cos(0.5\pi k)\)：\(\beta_2=\pi/2\)，\(2\pi/\beta_2=4\)，即 \(N_2=4\)。两周期序列之和的周期为 \(N_1,N_2\) 的最小公倍数，故 \(N=8\)。</p>
+<p>(2) 对 \(\sin(2k)\)：\(\beta=2\)，</p>
+\[ \frac{2\pi}{\beta}=\pi \]
+<p>为无理数，不存在正整数 \(N\) 使 \(\sin[2(k+N)]=\sin(2k)\) 恒成立，故 \(f_2[k]\) 为非周期序列。</p>
+<p class="ans">答案：(1) 周期序列，\(N=8\)；(2) 非周期序列。</p>`
+    },
+    {
+      ch: '01 信号与系统', type: '例题', src: '1.1 节 · 例',
+      q: String.raw`<p>判断下列系统是否为线性系统。</p><p>(1) \(y(t)=t^2 f(t)\)；&nbsp;&nbsp;(2) \(y(t)=3f(t)+4\)；&nbsp;&nbsp;(3) \(y(t)=4\,\dfrac{\mathrm{d}f(t)}{\mathrm{d}t}\)。</p>`,
+      sol: String.raw`<p><b>判据：</b>线性系统必须同时满足<b>均匀性</b>（\(af\to ay\)）和<b>叠加性</b>（\(f_1+f_2\to y_1+y_2\)）。</p>
+<p>(1) 设 \(f_1\to y_1=t^2f_1\)，\(f_2\to y_2=t^2f_2\)。对任意常数 \(a,b\)，输入 \(af_1+bf_2\) 产生</p>
+\[ t^2(af_1+bf_2)=a\,t^2f_1+b\,t^2f_2=ay_1+by_2 \]
+<p>故为线性系统。</p>
+<p>(2) 取 \(a=2\)：输入 \(2f_1\) 时输出 \(6f_1+4\)，而 \(2y_1=6f_1+8\)，二者不相等，均匀性不成立，故为非线性系统。常数项 \(4\) 是“零输入不为零”的来源。</p>
+<p>(3) 微分是线性运算：输入 \(af_1+bf_2\) 时输出</p>
+\[ 4\frac{\mathrm{d}}{\mathrm{d}t}(af_1+bf_2)=a\cdot 4\frac{\mathrm{d}f_1}{\mathrm{d}t}+b\cdot 4\frac{\mathrm{d}f_2}{\mathrm{d}t}=ay_1+by_2 \]
+<p>故为线性系统。</p>
+<p class="ans">答案：(1) 线性；(2) 非线性；(3) 线性。</p>`
+    },
+    {
+      ch: '01 信号与系统', type: '例题', src: '1.2 节 · 例',
+      q: String.raw`<p>判断下列输出响应所对应的系统是否为线性系统？其中 \(y(0)\) 为初始状态，\(f(t)\) 为激励，\(y(t)\) 为响应。</p><p>(1) \(y(t)=5y(0)+4f(t)\)；&nbsp;&nbsp;(2) \(y(t)=2y(0)+6f^2(t)\)；</p><p>(3) \(y(t)=4y(0)\cdot f(t)+3f(t)\)；&nbsp;&nbsp;(4) \(y(t)=4y(0)+3f(t)+2\dfrac{\mathrm{d}f(t)}{\mathrm{d}t}\)。</p>`,
+      sol: String.raw`<p><b>判据：</b>线性系统需同时满足三条：① 可分解性 \(y(t)=y_x(t)+y_f(t)\)；② 零输入响应 \(y_x\) 对所有初始状态线性；③ 零状态响应 \(y_f\) 对所有输入信号线性。</p>
+<p>(1) \(y_x=5y(0)\)，\(y_f=4f(t)\)，两部分都线性，且可分解，故为线性系统。</p>
+<p>(2) \(y_x=2y(0)\) 线性，但 \(y_f=6f^2(t)\) 对 \(f\) 不满足均匀性（\(f\to 6f^2\)，\(af\to 6a^2f^2\ne a\cdot 6f^2\)），故为非线性系统。</p>
+<p>(3) 项 \(4y(0)f(t)\) 是初始状态与输入的乘积，无法写成“只含 \(y(0)\)”与“只含 \(f(t)\)”两部分之和，不满足可分解性，故为非线性系统。</p>
+<p>(4) \(y_x=4y(0)\)，\(y_f=3f(t)+2f'(t)\)，二者均线性且可分解，故为线性系统。</p>
+<p class="ans">答案：(1) 线性；(2) 非线性；(3) 非线性；(4) 线性。</p>`
+    },
+    {
+      ch: '01 信号与系统', type: '例题', src: '1.2 节 · 例',
+      q: String.raw`<p>判断下列系统是否为时不变系统。</p><p>(1) \(y(t)=\sin[f(t)]\)；&nbsp;&nbsp;(2) \(y(t)=\cos t\cdot f(t)\)；</p><p>(3) \(y(t)=4f^2(t)+3f(t)\)；&nbsp;&nbsp;(4) \(y(t)=2t\cdot f(t)\)。</p>`,
+      sol: String.raw`<p><b>判据：</b>若输入 \(f(t)\) 产生输出 \(y(t)\)，则输入 \(f(t-t_0)\) 应产生输出 \(y(t-t_0)\)。时不变性只考察零状态响应。</p>
+<p>(1) \(f(t-t_0)\to\sin[f(t-t_0)]=y(t-t_0)\)，故时不变。</p>
+<p>(2) \(f(t-t_0)\to\cos t\cdot f(t-t_0)\)，而</p>
+\[ y(t-t_0)=\cos(t-t_0)f(t-t_0) \]
+<p>二者不相等，故时变。</p>
+<p>(3) \(f(t-t_0)\to4f^2(t-t_0)+3f(t-t_0)=y(t-t_0)\)，故时不变。</p>
+<p>(4) \(f(t-t_0)\to2t\,f(t-t_0)\)，而 \(y(t-t_0)=2(t-t_0)f(t-t_0)\)，二者不相等，故时变。</p>
+<p class="ans">答案：(1) 时不变；(2) 时变；(3) 时不变；(4) 时变。</p>`
+    },
+    {
+      ch: '02 基本信号', type: '例题', src: '2.1 节 · 例',
+      q: String.raw`<p>计算下列各式：</p>
+<p>(1) \(\displaystyle\int_{-\infty}^{+\infty}\sin t\,\delta(t-\pi/4)\,\mathrm{d}t\)；&nbsp;&nbsp;(2) \(\displaystyle\int_{-2}^{3}e^{-5t}\delta(t-1)\,\mathrm{d}t\)；</p>
+<p>(3) \(\displaystyle\int_{-4}^{6}e^{-2t}\delta(t+8)\,\mathrm{d}t\)；&nbsp;&nbsp;(4) \(\displaystyle\int_{-\infty}^{+\infty}e^{-t}\delta(2-2t)\,\mathrm{d}t\)；</p>
+<p>(5) \(\displaystyle\int_{-2}^{2}(t^2+3t)\delta(t/3-1)\,\mathrm{d}t\)；&nbsp;&nbsp;(6) \((t^3+2t^2+3)\delta(t-2)\)；</p>
+<p>(7) \(e^{-4t}\delta(2+2t)\)；&nbsp;&nbsp;(8) \(e^{-2t}u(t)\delta(t+1)\)。</p>`,
+      sol: String.raw`<p><b>核心性质：</b>取样性 \(\int f(t)\delta(t-t_0)\mathrm{d}t=f(t_0)\)（要求 \(t_0\) 在积分区间内）；展缩性 \(\delta(at+b)=\dfrac{1}{|a|}\delta(t+b/a)\)；乘积性 \(f(t)\delta(t-t_0)=f(t_0)\delta(t-t_0)\)。</p>
+<p>(1) \(t=\pi/4\) 在区间内，积分 \(=\sin(\pi/4)=\dfrac{\sqrt2}{2}\)。</p>
+<p>(2) \(t=1\in[-2,3]\)，积分 \(=e^{-5}\)。</p>
+<p>(3) \(t=-8\notin[-4,6]\)，积分 \(=0\)。</p>
+<p>(4) \(\delta(2-2t)=\delta[-2(t-1)]=\dfrac12\delta(t-1)\)，故积分 \(=\dfrac12e^{-1}=\dfrac{1}{2e}\)。</p>
+<p>(5) \(\delta(t/3-1)=\delta\!\left[\dfrac13(t-3)\right]=3\delta(t-3)\)，但 \(t=3\notin[-2,2]\)，积分 \(=0\)。</p>
+<p>(6) \(f(2)=2^3+2\cdot2^2+3=19\)，故为 \(19\delta(t-2)\)。</p>
+<p>(7) \(\delta(2+2t)=\delta[2(t+1)]=\dfrac12\delta(t+1)\)，故为 \(\dfrac12e^{4}\delta(t+1)\)。</p>
+<p>(8) \(t=-1\) 时 \(u(-1)=0\)，故乘积为 \(0\)。</p>
+<p class="ans">答案：(1) \(\frac{\sqrt2}{2}\)；(2) \(e^{-5}\)；(3) \(0\)；(4) \(\frac{1}{2e}\)；(5) \(0\)；(6) \(19\delta(t-2)\)；(7) \(\frac12e^4\delta(t+1)\)；(8) \(0\)。</p>`
+    },
+    {
+      ch: '02 基本信号', type: '小测', src: '2.1 节 · 小测',
+      q: String.raw`<p>计算与化简：</p>
+<p>(1)</p>
+\[ \int_{-\infty}^{+\infty}(3t^2+2t-1)\delta(t-2)\,\mathrm{d}t \]
+<p>(2)</p>
+\[ \int_{-1}^{3}\sin(\pi t)\delta(t-0.5)\,\mathrm{d}t \]
+<p>(3) \((t-3)\delta(t-3)\)。</p>
+<p>(4) 化简 \(\delta(2t-4)\)，并计算</p>
+\[ \int_{-\infty}^{+\infty}(t+1)\delta(2t-4)\,\mathrm{d}t \]
+<p>(5) 计算</p>
+\[ \int_{-\infty}^{+\infty}t^2\delta(t+1)\,\mathrm{d}t+\int_{-\infty}^{+\infty}2\cos(\pi t)\delta(t-2)\,\mathrm{d}t \]
+\[ -\int_{-\infty}^{+\infty}3\delta(t)\,\mathrm{d}t \]`,
+      sol: String.raw`<p>(1) 令 \(t=2\)：\(3\cdot2^2+2\cdot2-1=15\)。</p>
+<p>(2) \(t=0.5\in[-1,3]\)，\(\sin(0.5\pi)=1\)。</p>
+<p>(3) 由乘积性，\((t-3)\delta(t-3)=0\cdot\delta(t-3)=0\)。</p>
+<p>(4) \(\delta(2t-4)=\delta[2(t-2)]=\dfrac12\delta(t-2)\)，故</p>
+\[ \frac12\int_{-\infty}^{+\infty}(t+1)\delta(t-2)\,\mathrm{d}t=\frac12(2+1)=\frac32 \]
+<p>(5) 逐项取样：\((-1)^2+2\cos(2\pi)-3=1+2-3=0\)。</p>
+<p class="ans">答案：(1) 15；(2) 1；(3) 0；(4) \(\frac12\delta(t-2)\)，积分值 \(\frac32\)；(5) 0。</p>`
+    },
+    {
+      ch: '02 基本信号', type: '例题', src: '2.1 节 · 例',
+      q: String.raw`<p>写出图示信号的时域描述式（用 \(u(t)\)、\(r(t)\) 表示）。</p>
+<p>(1) \(f(t)\)：\(t\in(-1,0)\) 时由 0 线性升至 1；\(t\in(0,1)\) 时保持 1；\(t\in(1,2)\) 时由 1 线性降至 0；其余为 0。</p>
+<p>(2) \(f(t)\)：\(t&lt;-1\) 时为 0；\(t=-1\) 时跳变为 1 并保持到 0；\(t\in(0,1)\) 时由 1 线性降至 \(-1\)；\(t&gt;1\) 时保持 \(-1\)。</p>`,
+      sol: String.raw`<p>(1) 用“斜坡的起点与终点”拼接：在 \(t=-1\) 开始上升，加 \(r(t+1)\)；在 \(t=0\) 停止上升，减 \(r(t)\)；在 \(t=1\) 开始下降，减 \(r(t-1)\)；在 \(t=2\) 停止下降，加 \(r(t-2)\)。因此</p>
+\[ f(t)=r(t+1)-r(t)-r(t-1)+r(t-2) \]
+<p>验证：\(-1&lt;t&lt;0\) 时为 \(t+1\)；\(0&lt;t&lt;1\) 时为 \((t+1)-t=1\)；\(1&lt;t&lt;2\) 时为 \(2-t\)。</p>
+<p>(2) 在 \(t=-1\) 跳变，写 \(u(t+1)\)；从 \(t=0\) 起以斜率 \(-2\) 下降，写 \(-2r(t)\)；到 \(t=1\) 停止下降，加 \(2r(t-1)\)。因此</p>
+\[ f(t)=u(t+1)-2r(t)+2r(t-1) \]
+<p>验证：\(0&lt;t&lt;1\) 时为 \(1-2t\)；\(t&gt;1\) 时为 \(1-2t+2(t-1)=-1\)。</p>
+<p class="ans">答案：(1) \(r(t+1)-r(t)-r(t-1)+r(t-2)\)；(2) \(u(t+1)-2r(t)+2r(t-1)\)。</p>`
+    },
+    {
+      ch: '02 基本信号', type: '例题', src: '2.2 节 · 例',
+      q: String.raw`<p>判断下列离散序列是否为周期信号，若是，确定其周期。</p><p>(1) \(f_1[k]=\cos(\pi k/6)\)；&nbsp;&nbsp;(2) \(f_2[k]=\cos(k/6)\)；</p><p>(3) 对连续信号 \(f(t)=\cos 6\pi t\) 以抽样频率 \(f_s=8\ \mathrm{Hz}\) 抽样得到的序列。</p>`,
+      sol: String.raw`<p>(1) \(\beta=\pi/6\)，</p>
+\[ \frac{2\pi}{\beta}=12 \]
+<p>为整数，故周期 \(N=12\)。</p>
+<p>(2) \(\beta=1/6\)，\(\dfrac{2\pi}{\beta}=12\pi\) 为无理数，不存在整数周期，故非周期。</p>
+<p>(3) 抽样间隔 \(T_s=1/f_s=1/8\)，序列</p>
+\[ f[k]=\cos(6\pi k/8)=\cos(3\pi k/4) \]
+<p>此时 \(\beta=3\pi/4\)，\(\dfrac{2\pi}{\beta}=\dfrac83\)。取 \(m=3\) 得最小整数 \(N=8\)，故周期 \(N=8\)。</p>
+<p class="ans">答案：(1) \(N=12\)；(2) 非周期；(3) \(N=8\)。</p>`
+    },
+    {
+      ch: '03 运算与分解', type: '例题', src: '2.3 节 · 例',
+      q: String.raw`<p>已知 \(f(t)\)：\(-2&lt;t&lt;0\) 时 \(f(t)=1\)；\(0&lt;t&lt;3\) 时 \(f(t)\) 由 1 线性降至 0；其余为 0。试画出 \(f(6-2t)\) 的波形，并写出非零区间。</p>`,
+      sol: String.raw`<p>把 \(f(6-2t)\) 写成标准形式：</p>
+\[ f(6-2t)=f[-2(t-3)] \]
+<p>变换顺序：先翻转得 \(f(-t)\)，再压缩 2 倍得 \(f(-2t)\)，最后右移 3 个单位得 \(f[-2(t-3)]\)。</p>
+<p>非零区间随变换变化：</p>
+\[ (-2,3)\xrightarrow{\text{翻转}}(-3,2)\xrightarrow{\text{压缩}}(-1.5,1)\xrightarrow{\text{右移 }3}(1.5,4) \]
+<p>直接代换也可得到分段式：令 \(\tau=6-2t\)。当 \(0&lt;\tau&lt;3\)，即 \(1.5&lt;t&lt;3\) 时，</p>
+\[ f(6-2t)=1-\frac{6-2t}{3}=\frac{2t}{3}-1 \]
+<p>当 \(-2&lt;\tau&lt;0\)，即 \(3&lt;t&lt;4\) 时，\(f(6-2t)=1\)。</p>
+<p>波形：\(1.5&lt;t&lt;3\) 为从 0 线性升到 1 的斜坡；\(3&lt;t&lt;4\) 为高度 1 的平台；其余为 0。</p>
+<p class="ans">答案：非零区间 \((1.5,4)\)；\(f(6-2t)=\frac{2t}{3}-1\ (1.5&lt;t&lt;3)\)，\(=1\ (3&lt;t&lt;4)\)。</p>`
+    },
+    {
+      ch: '03 运算与分解', type: '例题', src: '2.3 节 · 例',
+      q: String.raw`<p>画出下列信号及其一阶导数的波形，其中 \(T\) 为常数，\(\omega_0=2\pi/T\)。</p><p>(1) \(f(t)=t[u(t)-u(t-T)]\)；&nbsp;&nbsp;(2) \(f(t)=\sin\omega_0t\,[u(t)-u(t-T)]\)。</p>`,
+      sol: String.raw`<p>(1) 在 \(0&lt;t&lt;T\) 内 \(f(t)=t\)，其余为 0，波形是从 0 升到 \(T\) 的斜坡。求导时注意乘积中的冲激：</p>
+\[ f'(t)=u(t)-u(t-T)+t[\delta(t)-\delta(t-T)]=u(t)-u(t-T)-T\delta(t-T) \]
+<p>故 \(f'(t)\) 在 \(0&lt;t&lt;T\) 内为 1，在 \(t=T\) 处有强度为 \(-T\) 的冲激。</p>
+<p>(2) 在 \(0&lt;t&lt;T\) 内 \(f(t)=\sin\omega_0t\)，其余为 0。求导：</p>
+\[ f'(t)=\omega_0\cos\omega_0t\,[u(t)-u(t-T)]+\sin\omega_0t\,[\delta(t)-\delta(t-T)] \]
+<p>因为 \(\sin 0=0\)，且 \(\sin(\omega_0T)=\sin 2\pi=0\)，两个冲激项都为零，所以</p>
+\[ f'(t)=\omega_0\cos\omega_0t\,[u(t)-u(t-T)] \]
+<p>即一阶导数仍是截断余弦，幅度变为 \(\omega_0\)。</p>`
+    },
+    {
+      ch: '03 运算与分解', type: '例题', src: '2.3 节 · 例',
+      q: String.raw`<p>已知 \(f(t)=t\ (0\le t\le1)\)，\(f(t)=1\ (1&lt;t\le2)\)，其余为 0。求 \(f(-2t+2)\) 的表达式并画出波形。</p>`,
+      sol: String.raw`<p>令 \(\tau=-2t+2\)，按 \(f(\tau)\) 的三段分别解出 \(t\)：</p>
+<p>① \(0\le\tau\le1\)：\(0\le-2t+2\le1\)，解得 \(0.5\le t\le1\)，此时</p>
+\[ f(-2t+2)=-2t+2 \]
+<p>② \(1&lt;\tau\le2\)：\(1&lt;-2t+2\le2\)，解得 \(0\le t&lt;0.5\)，此时 \(f(-2t+2)=1\)。</p>
+<p>③ 其余情况 \(\tau&lt;0\) 或 \(\tau&gt;2\)，即 \(t&lt;0\) 或 \(t&gt;1\)，此时为 0。</p>
+<p>波形：\(0\le t&lt;0.5\) 为高度 1 的平台；\(0.5\le t\le1\) 从 1 线性降到 0；其余为 0。</p>
+<p class="ans">答案：\(f(-2t+2)=1\ (0\le t&lt;0.5)\)；\(=-2t+2\ (0.5\le t\le1)\)；\(=0\ (t&lt;0\ \text{或}\ t&gt;1)\)。</p>`
+    },
+    {
+      ch: '03 运算与分解', type: '例题', src: '2.4 节 · 例',
+      q: String.raw`<p>画出信号 \(f(t)\) 的奇、偶分量。已知 \(f(t)\)：\(-1&lt;t&lt;0\) 时为 1；\(0&lt;t&lt;0.5\) 时由 0 线性升至 2；\(0.5&lt;t&lt;1\) 时由 2 线性降至 0；其余为 0。</p>`,
+      sol: String.raw`<p>偶分量与奇分量公式：</p>
+\[ f_e(t)=\frac{f(t)+f(-t)}{2},\qquad f_o(t)=\frac{f(t)-f(-t)}{2} \]
+<p>先写出 \(f(t)\) 的表达式：\(f(t)=1\ (-1&lt;t&lt;0)\)；\(f(t)=4t\ (0&lt;t&lt;0.5)\)；\(f(t)=4-4t\ (0.5&lt;t&lt;1)\)。</p>
+<p>在 \(0&lt;t&lt;0.5\) 内：\(f(-t)=1\)，故</p>
+\[ f_e(t)=\frac{4t+1}{2}=0.5+2t,\qquad f_o(t)=\frac{4t-1}{2}=-0.5+2t \]
+<p>在 \(0.5&lt;t&lt;1\) 内：\(f(-t)=1\)，故</p>
+\[ f_e(t)=\frac{4-4t+1}{2}=2.5-2t,\qquad f_o(t)=\frac{4-4t-1}{2}=1.5-2t \]
+<p>偶分量关于纵轴对称：\(t=\pm0.5\) 处取 1.5，\(t=0\) 处为 0.5，\(t=\pm1\) 处为 0.5。奇分量关于原点对称：\(t=0^+\) 为 \(-0.5\)，\(t=0.5\) 为 0.5，\(t=1\) 为 \(-0.5\)。</p>
+<p class="ans">答案：\(f_e(t)\) 为左右对称的折线；\(f_o(t)\) 为关于原点对称的折线，二者相加还原 \(f(t)\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.1 节 · 例',
+      q: String.raw`<p>已知某 LTI 系统在输入 \(f_1(t)=u(t)-u(t-1)\) 作用下产生的响应为 \(y_1(t)=e^{-2t}u(t)\)。试求系统在 \(f_2(t)\) 作用下产生的响应 \(y_2(t)\)，其中 \(f_2(t)\)：\(t&lt;-1\) 为 0；\(-1&lt;t&lt;0\) 由 0 线性升至 1；\(t&gt;0\) 保持 1。</p>`,
+      sol: String.raw`<p>先找 \(f_2\) 与 \(f_1\) 的关系。由波形，\(f_2\) 是 \(f_1\) 先左移 1 再积分：</p>
+\[ f_2(t)=\int_{-\infty}^{t+1}f_1(\tau)\,\mathrm{d}\tau \]
+<p>LTI 系统对输入积分，输出也作同样的积分；对输入时移，输出也作同样的时移。因此</p>
+\[ y_2(t)=\int_{-\infty}^{t+1}y_1(\tau)\,\mathrm{d}\tau
+=\int_0^{t+1}e^{-2\tau}\,\mathrm{d}\tau\cdot u(t+1) \]
+\[ =\frac12\left(1-e^{-2(t+1)}\right)u(t+1) \]
+<p class="ans">答案：\(y_2(t)=\frac12\left(1-e^{-2(t+1)}\right)u(t+1)\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.1 节 · 例',
+      q: String.raw`<p>已知二阶 LTI 连续系统 \(y''(t)+6y'(t)+8y(t)=f(t)\)，\(t&gt;0\)；初始条件 \(y(0)=1\)，\(y'(0)=2\)，输入 \(f(t)=e^{-t}u(t)\)。求全解 \(y(t)\)。</p>`,
+      sol: String.raw`<p><b>第一步：求齐次解。</b>特征方程</p>
+\[ s^2+6s+8=0\;\Longrightarrow\;(s+2)(s+4)=0 \]
+<p>特征根 \(s_1=-2\)，\(s_2=-4\)，故</p>
+\[ y_h(t)=K_1e^{-2t}+K_2e^{-4t} \]
+<p><b>第二步：求特解。</b>设 \(y_p(t)=Ce^{-t}\)，代入方程：</p>
+\[ Ce^{-t}-6Ce^{-t}+8Ce^{-t}=3Ce^{-t}=e^{-t} \]
+<p>得 \(C=\dfrac13\)，即 \(y_p(t)=\dfrac13e^{-t}\)。</p>
+<p><b>第三步：定常数。</b>全解</p>
+\[ y(t)=K_1e^{-2t}+K_2e^{-4t}+\frac13e^{-t} \]
+<p>由初始条件：</p>
+\[ K_1+K_2+\frac13=1,\qquad -2K_1-4K_2-\frac13=2 \]
+<p>化简得 \(K_1+K_2=\dfrac23\)，\(K_1+2K_2=-\dfrac76\)。两式相减得 \(K_2=-\dfrac{11}{6}\)，从而 \(K_1=\dfrac52\)。</p>
+<p class="ans">答案：\(y(t)=\dfrac52e^{-2t}-\dfrac{11}{6}e^{-4t}+\dfrac13e^{-t}\)，\(t\ge0\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.1 节 · 例1',
+      q: String.raw`<p>已知系统 \(y''(t)+5y'(t)+6y(t)=4f(t)\)，初始状态 \(y(0^-)=1\)，\(y'(0^-)=3\)。求零输入响应 \(y_x(t)\)。</p>`,
+      sol: String.raw`<p>零输入响应令 \(f(t)=0\)，只由初始状态决定。特征方程</p>
+\[ s^2+5s+6=0\;\Longrightarrow\;s_1=-2,\ s_2=-3 \]
+<p>故</p>
+\[ y_x(t)=K_1e^{-2t}+K_2e^{-3t} \]
+<p>由初始状态：</p>
+\[ K_1+K_2=1,\qquad -2K_1-3K_2=3 \]
+<p>第一式乘 2 后与第二式相减：\(K_2=-5\)，于是 \(K_1=6\)。</p>
+<p class="ans">答案：\(y_x(t)=6e^{-2t}-5e^{-3t}\)，\(t\ge0\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.1 节 · 例2',
+      q: String.raw`<p>已知系统 \(y''(t)+4y'(t)+4y(t)=2f'(t)+3f(t)\)，初始状态 \(y(0^-)=2\)，\(y'(0^-)=-1\)。求零输入响应 \(y_x(t)\)。</p>`,
+      sol: String.raw`<p>零输入时右端为零。特征方程</p>
+\[ s^2+4s+4=0\;\Longrightarrow\;(s+2)^2=0 \]
+<p>为二重根 \(s_1=s_2=-2\)，故零输入响应形式为</p>
+\[ y_x(t)=K_1e^{-2t}+K_2te^{-2t} \]
+<p>代入初始状态：\(y_x(0)=K_1=2\)；</p>
+\[ y_x'(t)=-2K_1e^{-2t}+K_2e^{-2t}-2K_2te^{-2t} \]
+\[ y_x'(0)=-2K_1+K_2=-1 \]
+<p>解得 \(K_2=3\)。</p>
+<p class="ans">答案：\(y_x(t)=(2+3t)e^{-2t}\)，\(t\ge0\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.1 节 · 例3',
+      q: String.raw`<p>已知系统 \(y''(t)+2y'(t)+5y(t)=4f'(t)+3f(t)\)，初始状态 \(y(0^-)=1\)，\(y'(0^-)=3\)。求零输入响应 \(y_x(t)\)。</p>`,
+      sol: String.raw`<p>特征方程</p>
+\[ s^2+2s+5=0\;\Longrightarrow\;s_{1,2}=-1\pm\mathrm{j}2 \]
+<p>为共轭复根，记 \(\alpha=-1\)，\(\beta=2\)，故</p>
+\[ y_x(t)=e^{-t}\left(K_1\cos2t+K_2\sin2t\right) \]
+<p>由 \(y_x(0)=K_1=1\)；求导</p>
+\[ y_x'(t)=-e^{-t}(K_1\cos2t+K_2\sin2t)+e^{-t}(-2K_1\sin2t+2K_2\cos2t) \]
+<p>在 \(t=0\) 处：\(y_x'(0)=-K_1+2K_2=3\)，代入 \(K_1=1\) 得 \(K_2=2\)。</p>
+<p class="ans">答案：\(y_x(t)=e^{-t}(\cos2t+2\sin2t)\)，\(t\ge0\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '小测', src: '3.1 节 · 小测 1',
+      q: String.raw`<p>计算卷积：\(2e^{-2t}u(t)*3e^{-t}u(t)\)。</p>`,
+      sol: String.raw`<p>按卷积定义，两个因果信号的卷积为</p>
+\[ y(t)=\int_0^t 2e^{-2\tau}\cdot3e^{-(t-\tau)}\,\mathrm{d}\tau\cdot u(t) \]
+\[ =6e^{-t}\int_0^t e^{-\tau}\,\mathrm{d}\tau\cdot u(t)
+=6e^{-t}\left(1-e^{-t}\right)u(t) \]
+<p>也可用公式 \(e^{\alpha t}u(t)*e^{\beta t}u(t)=\dfrac{1}{\beta-\alpha}\left(e^{\beta t}-e^{\alpha t}\right)u(t)\)，取 \(\alpha=-2,\beta=-1\)，得 \(6(e^{-t}-e^{-2t})u(t)\)。</p>
+<p class="ans">答案：\(6\left(e^{-t}-e^{-2t}\right)u(t)\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '小测', src: '3.1 节 · 小测 2',
+      q: String.raw`<p>已知连续时间 LTI 因果系统 \(y''(t)+4y'(t)+3y(t)=f'(t)-f(t)\)，\(t&gt;0\)；\(f(t)=e^t u(t)\)，\(y(0^-)=1\)，\(y'(0^-)=0\)。求全响应 \(y(t)\)。</p>`,
+      sol: String.raw`<p><b>关键：</b>右端含 \(f'(t)\)，在 \(t=0\) 处有冲激，需要先求 \(0^+\) 初始值。</p>
+<p>当 \(t&gt;0\) 时，\(f'(t)-f(t)=e^t-e^t=0\)。对原方程从 \(0^-\) 到 \(0^+\) 积分：</p>
+\[ \left[y'(0^+)-y'(0^-)\right]+4\left[y(0^+)-y(0^-)\right]+3\int_{0^-}^{0^+}y\,\mathrm{d}t=\int_{0^-}^{0^+}(f'-f)\,\mathrm{d}t \]
+<p>右端 \(=\left[f(0^+)-f(0^-)\right]-0=1-0=1\)。由于右端只有 \(\delta(t)\) 而无 \(\delta'(t)\)，\(y\) 连续，\(y(0^+)=y(0^-)=1\)；于是</p>
+\[ y'(0^+)-0+0=1\;\Longrightarrow\;y'(0^+)=1 \]
+<p>对 \(t&gt;0\)，解齐次方程。特征方程</p>
+\[ s^2+4s+3=0\;\Longrightarrow\;s_1=-1,\ s_2=-3 \]
+<p>故 \(y(t)=C_1e^{-t}+C_2e^{-3t}\)。代入 \(y(0^+)=1\)，\(y'(0^+)=1\)：</p>
+\[ C_1+C_2=1,\qquad -C_1-3C_2=1 \]
+<p>解得 \(C_1=2\)，\(C_2=-1\)。</p>
+<p class="ans">答案：\(y(t)=2e^{-t}-e^{-3t}\)，\(t\ge0\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.2 节 · 例1',
+      q: String.raw`<p>已知系统 \(y'(t)+3y(t)=2f(t)\)，求冲激响应 \(h(t)\)。</p>`,
+      sol: String.raw`<p>冲激响应是输入 \(f(t)=\delta(t)\)、零状态下的输出，满足</p>
+\[ h'(t)+3h(t)=2\delta(t) \]
+<p>设 \(h(t)=Ae^{-3t}u(t)+B\delta(t)\)（一阶系统右端无 \(\delta'\)，故 \(B\) 只可能来自待定项）。代入：</p>
+\[ h'(t)=A\delta(t)-3Ae^{-3t}u(t)+B\delta'(t) \]
+\[ h'(t)+3h(t)=B\delta'(t)+(A+3B)\delta(t)=2\delta(t) \]
+<p>比较系数：\(B=0\)，\(A=2\)。物理意义：一阶系统 \(y'+ay=bf\) 的冲激响应为 \(be^{-at}u(t)\)。</p>
+<p class="ans">答案：\(h(t)=2e^{-3t}u(t)\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.2 节 · 例2',
+      q: String.raw`<p>已知系统 \(y'(t)+6y(t)=2f(t)+3f'(t)\)，求冲激响应 \(h(t)\)。</p>`,
+      sol: String.raw`<p>令 \(f(t)=\delta(t)\)，则</p>
+\[ h'(t)+6h(t)=2\delta(t)+3\delta'(t) \]
+<p>右端出现 \(\delta'\)，故设</p>
+\[ h(t)=Ae^{-6t}u(t)+B\delta(t) \]
+<p>求导并代入：</p>
+\[ h'(t)=A\delta(t)-6Ae^{-6t}u(t)+B\delta'(t) \]
+\[ h'+6h=B\delta'(t)+(A+6B)\delta(t) \]
+<p>与 \(3\delta'(t)+2\delta(t)\) 比较：\(B=3\)，\(A+6B=2\)，故 \(A=2-18=-16\)。</p>
+<p class="ans">答案：\(h(t)=3\delta(t)-16e^{-6t}u(t)\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.2 节 · 例3',
+      q: String.raw`<p>求例1所述系统（\(y'(t)+3y(t)=2f(t)\)）的单位阶跃响应 \(g(t)\)。</p>`,
+      sol: String.raw`<p>例1已求得冲激响应</p>
+\[ h(t)=2e^{-3t}u(t) \]
+<p>阶跃响应是冲激响应的积分：</p>
+\[ g(t)=\int_{-\infty}^{t}h(\tau)\,\mathrm{d}\tau
+=\int_0^t2e^{-3\tau}\,\mathrm{d}\tau\cdot u(t) \]
+\[ =\frac23\left(1-e^{-3t}\right)u(t) \]
+<p>也可直接解 \(g'(t)+3g(t)=2u(t)\)：\(t&gt;0\) 时 \(g=K e^{-3t}+2/3\)，由 \(g(0^+)=0\) 得 \(K=-2/3\)，结果一致。</p>
+<p class="ans">答案：\(g(t)=\dfrac23\left(1-e^{-3t}\right)u(t)\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.2 节 · 例',
+      q: String.raw`<p>已知 \(f(t)=u(t+0.5)-u(t-0.5)\)，\(h(t)=u(t+0.5)-u(t-0.5)\)，求 \(y(t)=f(t)*h(t)\)。</p>`,
+      sol: String.raw`<p>两个宽度均为 1 的矩形脉冲卷积，结果是三角脉冲。按图解法讨论重叠区间：</p>
+\[ y(t)=\int_{-\infty}^{+\infty}f(\tau)h(t-\tau)\,\mathrm{d}\tau \]
+<p>① \(t\le-1\) 或 \(t\ge1\)：两矩形不重叠，\(y(t)=0\)。</p>
+<p>② \(-1&lt;t\le0\)：重叠长度为 \(t+1\)，故 \(y(t)=t+1\)。</p>
+<p>③ \(0&lt;t\le1\)：重叠长度为 \(1-t\)，故 \(y(t)=1-t\)。</p>
+<p>合写为</p>
+\[ y(t)=(1-|t|)\left[u(t+1)-u(t-1)\right] \]
+<p>峰值 \(y(0)=1\)，底宽为 2。</p>
+<p class="ans">答案：\(y(t)=1-|t|\ (|t|\le1)\)，其余为 0。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '练习', src: '3.2 节 · 练习1',
+      q: String.raw`<p>计算 \(u(t)*u(t)\)。</p>`,
+      sol: String.raw`<p>按定义：</p>
+\[ u(t)*u(t)=\int_{-\infty}^{+\infty}u(\tau)u(t-\tau)\,\mathrm{d}\tau \]
+<p>两个单位阶跃同时非零要求 \(\tau&gt;0\) 且 \(t-\tau&gt;0\)，即 \(0&lt;\tau&lt;t\)。当 \(t&gt;0\) 时积分区间长度为 \(t\)；当 \(t&lt;0\) 时无重叠。</p>
+\[ u(t)*u(t)=\int_0^t\mathrm{d}\tau\cdot u(t)=t\,u(t)=r(t) \]
+<p class="ans">答案：\(u(t)*u(t)=r(t)\)，即斜坡信号。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '练习', src: '3.2 节 · 练习2',
+      q: String.raw`<p>计算 \(y(t)=f(t)*h(t)\)，其中 \(f(t)=u(t)-u(t-1)\)，\(h(t)=u(t)-u(t-2)\)。</p>`,
+      sol: String.raw`<p><b>方法一（分段图解法）：</b>\(f\) 宽 1，\(h\) 宽 2，卷积结果总宽 3。</p>
+<p>① \(0&lt;t\le1\)：\(y(t)=t\)；② \(1&lt;t\le2\)：\(y(t)=1\)；③ \(2&lt;t\le3\)：\(y(t)=3-t\)；其余为 0。</p>
+<p><b>方法二（位移特性）：</b>由 \(u*u=r\)，</p>
+\[ y=[u(t)-u(t-1)]*[u(t)-u(t-2)] \]
+\[ =r(t)-r(t-1)-r(t-2)+r(t-3) \]
+<p>展开即上面的三段折线，峰值 \(y=1\) 出现在 \(1\le t\le2\)。</p>
+<p class="ans">答案：\(y(t)=t\ (0&lt;t\le1)\)；\(=1\ (1&lt;t\le2)\)；\(=3-t\ (2&lt;t\le3)\)；其余为 0。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.2 节 · 例',
+      q: String.raw`<p>计算 \(f(t)*h(t)\)，其中 \(f(t)=u(t)\)，\(h(t)=e^{-t}u(t)\)。</p>`,
+      sol: String.raw`<p>由卷积定义：</p>
+\[ y(t)=\int_{-\infty}^{+\infty}u(\tau)e^{-(t-\tau)}u(t-\tau)\,\mathrm{d}\tau \]
+<p>要求 \(\tau&gt;0\) 且 \(t-\tau&gt;0\)，即 \(0&lt;\tau&lt;t\)。因此当 \(t&gt;0\) 时</p>
+\[ y(t)=\int_0^t e^{-(t-\tau)}\,\mathrm{d}\tau=e^{-t}\int_0^t e^{\tau}\,\mathrm{d}\tau=e^{-t}(e^t-1)=1-e^{-t} \]
+<p>当 \(t&lt;0\) 时无重叠，\(y=0\)。</p>
+<p class="ans">答案：\(y(t)=\left(1-e^{-t}\right)u(t)\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.2 节 · 例',
+      q: String.raw`<p>已知 \(y(t)=f_1(t)*f_2(t)\)，求 \(y'(t)\) 与 \(y^{(-1)}(t)=\displaystyle\int_{-\infty}^{t}y(\tau)\,\mathrm{d}\tau\)。</p>`,
+      sol: String.raw`<p><b>微分特性：</b>卷积与冲激的微分相乘，利用结合律</p>
+\[ y'(t)=y(t)*\delta'(t)=\left[f_1(t)*f_2(t)\right]*\delta'(t) \]
+\[ =f_1'(t)*f_2(t)=f_1(t)*f_2'(t) \]
+<p><b>积分特性：</b>同理，\(y^{(-1)}(t)=y(t)*u(t)\)，故</p>
+\[ y^{(-1)}(t)=f_1^{(-1)}(t)*f_2(t)=f_1(t)*f_2^{(-1)}(t) \]
+<p>一般地，\(y^{(n)}=f_1^{(n)}*f_2=f_1*f_2^{(n)}\)，微分与积分的阶数可以在两个信号之间“转移”。</p>
+<p class="ans">答案：\(y'=f_1'*f_2=f_1*f_2'\)；\(y^{(-1)}=f_1^{(-1)}*f_2=f_1*f_2^{(-1)}\)。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.2 节 · 例',
+      q: String.raw`<p>计算下列卷积积分：</p>
+<p>(1) \(2e^{-2t}u(t)*3e^{-t}u(t)\)；</p>
+<p>(2) \(2e^{-2(t-1)}u(t-1)*3e^{-(t-2)}u(t-2)\)；</p>
+<p>(3) \(2e^{-2t}u(t-1)*3e^{-t}u(t-2)\)。</p>`,
+      sol: String.raw`<p>先用公式</p>
+\[ e^{\alpha t}u(t)*e^{\beta t}u(t)=\frac{1}{\beta-\alpha}\left(e^{\beta t}-e^{\alpha t}\right)u(t)\quad(\alpha\ne\beta) \]
+<p>(1) 取 \(\alpha=-2,\beta=-1\)，系数 \(2\cdot3=6\)：</p>
+\[ 6\left(e^{-t}-e^{-2t}\right)u(t) \]
+<p>(2) 两信号分别右移 1、2，卷积结果整体右移 \(1+2=3\)：</p>
+\[ 6\left[e^{-(t-3)}-e^{-2(t-3)}\right]u(t-3) \]
+<p>(3) 先把 \(u(t-1),u(t-2)\) 写成平移形式：</p>
+\[ 2e^{-2t}u(t-1)=2e^{-2}\cdot e^{-2(t-1)}u(t-1) \]
+\[ 3e^{-t}u(t-2)=3e^{-2}\cdot e^{-(t-2)}u(t-2) \]
+<p>两个信号分别右移 1、2，系数为 \(6e^{-4}\)，结果整体右移 3：</p>
+\[ 6e^{-4}\left[e^{-(t-3)}-e^{-2(t-3)}\right]u(t-3) \]
+<p class="ans">答案见上三式。</p>`
+    },
+    {
+      ch: '04 LTI 与卷积', type: '例题', src: '3.1 节 · 例2',
+      q: String.raw`<p>已知 LTI 系统冲激响应 \(h(t)=2e^{-3t}u(t)\)，输入 \(f(t)=3u(t)\)，求零状态响应 \(y_f(t)\)。</p>`,
+      sol: String.raw`<p>零状态响应等于输入与冲激响应的卷积：</p>
+\[ y_f(t)=f(t)*h(t)=\int_{-\infty}^{+\infty}f(\tau)h(t-\tau)\,\mathrm{d}\tau \]
+\[ =\int_{-\infty}^{+\infty}3u(\tau)\cdot2e^{-3(t-\tau)}u(t-\tau)\,\mathrm{d}\tau \]
+<p>两个阶跃同时非零要求 \(0&lt;\tau&lt;t\)，故</p>
+\[ y_f(t)=\int_0^t6e^{-3(t-\tau)}\,\mathrm{d}\tau\cdot u(t)
+=6e^{-3t}\int_0^t e^{3\tau}\,\mathrm{d}\tau\cdot u(t) \]
+\[ =6e^{-3t}\cdot\frac{e^{3t}-1}{3}\,u(t)=2\left(1-e^{-3t}\right)u(t) \]
+<p class="ans">答案：\(y_f(t)=2\left(1-e^{-3t}\right)u(t)\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例1',
+      q: String.raw`<p>计算图示周期方波信号的傅里叶级数展开式。周期为 \(T_0\)，角频率 \(\Omega=2\pi/T_0\)，且</p>
+\[ f(t)=\begin{cases}1, & 0&lt;t&lt;T_0/2\\ -1, & T_0/2&lt;t&lt;T_0\end{cases} \]
+<p>并说明它包含哪些谐波分量。</p>`,
+      sol: String.raw`<p><b>直流分量：</b></p>
+\[ a_0=\frac{2}{T_0}\int_0^{T_0}f(t)\,\mathrm{d}t
+=\frac{2}{T_0}\left(\int_0^{T_0/2}\mathrm{d}t-\int_{T_0/2}^{T_0}\mathrm{d}t\right)=0 \]
+<p><b>余弦系数：</b></p>
+\[ a_n=\frac{2}{T_0}\left(\int_0^{T_0/2}\cos n\Omega t\,\mathrm{d}t-\int_{T_0/2}^{T_0}\cos n\Omega t\,\mathrm{d}t\right)=0 \]
+<p><b>正弦系数：</b></p>
+\[ b_n=\frac{2}{T_0}\left(\int_0^{T_0/2}\sin n\Omega t\,\mathrm{d}t-\int_{T_0/2}^{T_0}\sin n\Omega t\,\mathrm{d}t\right)
+=\frac{2}{n\pi}\left[1-(-1)^n\right] \]
+<p>当 \(n\) 为偶数时 \(b_n=0\)；当 \(n\) 为奇数时 \(b_n=\dfrac{4}{n\pi}\)。</p>
+<p>因此</p>
+\[ f(t)=\frac{4}{\pi}\left[\sin\Omega t+\frac13\sin3\Omega t+\frac15\sin5\Omega t+\cdots\right]
+=\frac{4}{\pi}\sum_{n=1}^{\infty}\frac{\sin(2n-1)\Omega t}{2n-1} \]
+<p>方波只含<b>奇次正弦谐波</b>，幅度按 \(1/n\) 衰减。</p>
+<p class="ans">答案：\(f(t)=\dfrac{4}{\pi}\sum_{n=1}^{\infty}\dfrac{\sin(2n-1)\Omega t}{2n-1}\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例2',
+      q: String.raw`<p>计算图示周期矩形脉冲信号的指数形式傅里叶级数展开式及频谱。周期为 \(T\)，角频率 \(\omega_0=2\pi/T\)，脉宽为 \(\tau\)，幅度为 \(A\)，且</p>
+\[ f(t)=A\quad\left(|t|&lt;\frac{\tau}{2}\right) \]
+<p>其余一个周期内为 0。</p>`,
+      sol: String.raw`<p>指数形式系数：</p>
+\[ F_n=\frac{1}{T}\int_{-T/2}^{T/2}f(t)e^{-\mathrm{j}n\omega_0t}\,\mathrm{d}t
+=\frac{1}{T}\int_{-\tau/2}^{\tau/2}Ae^{-\mathrm{j}n\omega_0t}\,\mathrm{d}t \]
+\[ =\frac{A}{T}\cdot\frac{e^{-\mathrm{j}n\omega_0t}}{-\mathrm{j}n\omega_0}\Bigg|_{-\tau/2}^{\tau/2}
+=\frac{A}{T}\cdot\frac{e^{-\mathrm{j}n\omega_0\tau/2}-e^{\mathrm{j}n\omega_0\tau/2}}{-\mathrm{j}n\omega_0} \]
+<p>利用 \(\sin x=(e^{\mathrm{j}x}-e^{-\mathrm{j}x})/(2\mathrm{j})\)，得</p>
+\[ F_n=\frac{A\tau}{T}\,\mathrm{Sa}\!\left(\frac{n\omega_0\tau}{2}\right) \]
+<p>其中 \(\mathrm{Sa}(x)=\sin x/x\)。于是</p>
+\[ f(t)=\frac{A\tau}{T}\sum_{n=-\infty}^{\infty}\mathrm{Sa}\!\left(\frac{n\omega_0\tau}{2}\right)e^{\mathrm{j}n\omega_0t} \]
+<p>频谱为离散谱：谱线间隔 \(\omega_0\)，包络为 Sa 函数；\(n=0\) 处 \(F_0=A\tau/T\)。当 \(\tau\to0\) 时包络展宽，当 \(\tau\to T\) 时谱线集中。</p>
+<p class="ans">答案：\(F_n=\dfrac{A\tau}{T}\mathrm{Sa}\!\left(\dfrac{n\omega_0\tau}{2}\right)\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例3',
+      q: String.raw`<p>计算图示周期三角脉冲信号的指数形式傅里叶级数展开式。周期 \(T=2\)，\(\omega_0=\pi\)，且</p>
+\[ f(t)=|t|\quad(|t|&lt;1) \]
+<p>并写出其指数形式展开式。</p>`,
+      sol: String.raw`<p>在一个周期 \((-1,1)\) 内，\(f(t)=-t\ (-1&lt;t&lt;0)\)，\(f(t)=t\ (0&lt;t&lt;1)\)。于是</p>
+\[ F_n=\frac12\left[\int_{-1}^{0}(-t)e^{-\mathrm{j}n\pi t}\,\mathrm{d}t+\int_0^1te^{-\mathrm{j}n\pi t}\,\mathrm{d}t\right] \]
+<p>分部积分后两项合并，得</p>
+\[ F_n=\frac{1}{(n\pi)^2}\left(\cos n\pi-1\right) \]
+<p>讨论：\(n=0\) 时 \(F_0=\dfrac12\)；\(n\) 为偶数时 \(\cos n\pi=1\)，\(F_n=0\)；\(n\) 为奇数时 \(\cos n\pi=-1\)，</p>
+\[ F_n=-\frac{2}{n^2\pi^2} \]
+<p>因此</p>
+\[ f(t)=\frac12-\sum_{m=-\infty}^{\infty}\frac{2}{\left[(2m-1)\pi\right]^2}e^{\mathrm{j}(2m-1)\pi t} \]
+<p>三角脉冲只含直流与奇次谐波，谐波幅度按 \(1/n^2\) 衰减，比方波更快。</p>
+<p class="ans">答案：\(F_0=\frac12\)，\(F_n=-\dfrac{2}{n^2\pi^2}\)（\(n\) 为奇数），\(F_n=0\)（\(n\) 为非零偶数）。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例4',
+      q: String.raw`<p>已知 \(f(t)=3\cos(\omega_0t+4)\)，求其指数形式傅里叶系数 \(F_n\)。</p>`,
+      sol: String.raw`<p>用欧拉公式展开：</p>
+\[ f(t)=3\cdot\frac12\left(e^{\mathrm{j}(\omega_0t+4)}+e^{-\mathrm{j}(\omega_0t+4)}\right) \]
+\[ =\frac32e^{\mathrm{j}4}e^{\mathrm{j}\omega_0t}+\frac32e^{-\mathrm{j}4}e^{-\mathrm{j}\omega_0t} \]
+<p>与 \(f(t)=\sum_nF_ne^{\mathrm{j}n\omega_0t}\) 比较，只有 \(n=\pm1\) 两项非零：</p>
+\[ F_1=\frac32e^{\mathrm{j}4},\qquad F_{-1}=\frac32e^{-\mathrm{j}4} \]
+<p>其余 \(F_n=0\)。幅度谱为两根高 \(1.5\) 的谱线，相位分别为 \(\pm4\)。</p>
+<p class="ans">答案：\(F_{\pm1}=\frac32e^{\pm\mathrm{j}4}\)，其余 \(F_n=0\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例5',
+      q: String.raw`<p>已知周期冲激串 \(\delta_T(t)=\displaystyle\sum_{k=-\infty}^{+\infty}\delta(t-kT)\)，求其指数形式傅里叶系数 \(F_n\)。</p>`,
+      sol: String.raw`<p>在一个周期 \((-T/2,T/2)\) 内，冲激串只有 \(t=0\) 处的 \(\delta(t)\)，故</p>
+\[ F_n=\frac1T\int_{-T/2}^{T/2}\delta_T(t)e^{-\mathrm{j}n\omega_0t}\,\mathrm{d}t
+=\frac1T\int_{-T/2}^{T/2}\delta(t)e^{-\mathrm{j}n\omega_0t}\,\mathrm{d}t \]
+<p>由取样性，\(e^{-\mathrm{j}n\omega_0t}\) 在 \(t=0\) 处为 1，因此</p>
+\[ F_n=\frac1T\quad(\text{对所有 }n) \]
+<p>所以周期冲激串的频谱仍是周期冲激串，每条谱线强度均为 \(1/T\)：</p>
+\[ \delta_T(t)=\frac1T\sum_{n=-\infty}^{\infty}e^{\mathrm{j}n\omega_0t} \]
+<p class="ans">答案：\(F_n=\dfrac1T\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例5',
+      q: String.raw`<p>求图示周期信号 \(f(t)\) 的傅里叶级数。已知 \(f(t)\) 的周期为 4：在每个周期内，\(-1&lt;t&lt;1\) 时 \(f(t)=1\)，\(1&lt;t&lt;3\) 时 \(f(t)=2\)。</p>`,
+      sol: String.raw`<p>把 \(f(t)\) 分解为“直流”与“方波”之差：设</p>
+\[ f_1(t)=2 \]
+<p>为一直流信号；设 \(f_2(t)\) 为幅度在 0 与 1 之间跳变、脉宽为 2、周期为 4 的矩形脉冲，则</p>
+\[ f(t)=f_1(t)-f_2(t) \]
+<p>幅度为 1、脉宽为 2、周期为 4 的矩形脉冲可写成</p>
+\[ f_2(t)=0.5+\sum_{n=1}^{\infty}\mathrm{Sa}\!\left(\frac{n\pi}{2}\right)\cos\frac{n\pi t}{2} \]
+<p>（直流分量 0.5；由于 \(\mathrm{Sa}(n\pi/2)\) 在 \(n\) 为偶数时为零，交流部分只含奇次谐波。）于是</p>
+\[ f(t)=2-\left[0.5+\sum_{n=1}^{\infty}\mathrm{Sa}\!\left(\frac{n\pi}{2}\right)\cos\frac{n\pi t}{2}\right] \]
+\[ =1.5-\sum_{n=1}^{\infty}\mathrm{Sa}\!\left(\frac{n\pi}{2}\right)\cos\frac{n\pi t}{2} \]
+<p class="ans">答案：\(f(t)=1.5-\displaystyle\sum_{n=1}^{\infty}\mathrm{Sa}\!\left(\dfrac{n\pi}{2}\right)\cos\dfrac{n\pi t}{2}\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例1',
+      q: String.raw`<p>已知连续周期信号的频谱如图所示：\(F_0=4\)，\(|F_{\pm1}|=3\)，\(|F_{\pm2}|=1\)，\(|F_{\pm3}|=2\)，其余为 0。试写出实数形式的傅里叶级数。</p>`,
+      sol: String.raw`<p>由图读出各次谐波的复系数（图中谱线为实数幅度）：</p>
+\[ F_0=4,\quad F_{\pm1}=3,\quad F_{\pm2}=1,\quad F_{\pm3}=2 \]
+<p>按指数形式展开：</p>
+\[ f(t)=\sum_{n=-\infty}^{\infty}F_ne^{\mathrm{j}n\omega_0t} \]
+\[ =4+3\left(e^{\mathrm{j}\omega_0t}+e^{-\mathrm{j}\omega_0t}\right)
++\left(e^{\mathrm{j}2\omega_0t}+e^{-\mathrm{j}2\omega_0t}\right)
++2\left(e^{\mathrm{j}3\omega_0t}+e^{-\mathrm{j}3\omega_0t}\right) \]
+<p>利用 \(e^{\mathrm{j}\theta}+e^{-\mathrm{j}\theta}=2\cos\theta\)：</p>
+\[ f(t)=4+6\cos\omega_0t+2\cos2\omega_0t+4\cos3\omega_0t \]
+<p class="ans">答案：\(f(t)=4+6\cos\omega_0t+2\cos2\omega_0t+4\cos3\omega_0t\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例3',
+      q: String.raw`<p>周期矩形脉冲信号 \(A=1\)，\(T=1/4\)，\(\tau=1/20\)。求在有效带宽 \((0\sim2\pi/\tau)\) 内各谐波分量的平均功率占整个信号平均功率的百分比。</p>`,
+      sol: String.raw`<p>周期矩形脉冲的复系数为</p>
+\[ F_n=\frac{A\tau}{T}\mathrm{Sa}\!\left(\frac{n\omega_0\tau}{2}\right) \]
+<p>代入 \(A=1,T=1/4,\tau=1/20,\omega_0=2\pi/T=8\pi\)：</p>
+\[ F_n=0.2\,\mathrm{Sa}\!\left(\frac{n\pi}{5}\right) \]
+<p>信号平均功率（时域）为</p>
+\[ P=\frac1T\int_{-T/2}^{T/2}f^2(t)\,\mathrm{d}t=\frac{A^2\tau}{T}=0.2\ \mathrm{W} \]
+<p>有效带宽上界为 \(2\pi/\tau=40\pi\)，而 \(\omega_0=8\pi\)，故 \(n\omega_0\le40\pi\) 对应 \(n\le5\)。按课件取 \(n=0,\pm1,\ldots,\pm4\)：</p>
+\[ P_1=\sum_{n=-4}^{4}|F_n|^2=F_0^2+2\sum_{n=1}^{4}|F_n|^2 \]
+<p>计算得 \(F_0=0.2\)，\(F_1\approx0.1871\)，\(F_2\approx0.1514\)，\(F_3\approx0.1009\)，\(F_4\approx0.0468\)，故</p>
+\[ P_1\approx0.04+2(0.0350+0.0229+0.0102+0.0022)=0.1806\ \mathrm{W} \]
+<p>占比</p>
+\[ \frac{P_1}{P}=\frac{0.1806}{0.200}=90\% \]
+<p class="ans">答案：有效带宽内谐波功率约占整个信号平均功率的 \(90\%\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '例题', src: '4 章 · 例4',
+      q: String.raw`<p>已知</p>
+\[ f(t)=2e^{-\mathrm{j}2\omega_0t}+3e^{-\mathrm{j}\omega_0t}+4+3e^{\mathrm{j}\omega_0t}+2e^{\mathrm{j}2\omega_0t} \]
+<p>求 \(f(t)\) 的平均功率。</p>`,
+      sol: String.raw`<p><b>方法一（帕塞瓦尔，复系数）：</b>由展开式直接读出</p>
+\[ F_0=4,\qquad F_{\pm1}=3,\qquad F_{\pm2}=2 \]
+<p>平均功率等于各复系数模平方之和：</p>
+\[ P=\sum_{n=-\infty}^{\infty}|F_n|^2=2^2+3^2+4^2+3^2+2^2=42 \]
+<p><b>方法二（实三角形式）：</b>合并共轭项，</p>
+\[ f(t)=4+6\cos\omega_0t+4\cos2\omega_0t \]
+<p>直流功率 \(4^2=16\)，各余弦分量功率为幅度平方的一半：</p>
+\[ P=4^2+\frac12\cdot6^2+\frac12\cdot4^2=16+18+8=42 \]
+<p class="ans">答案：\(P=42\)（归一化功率）。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '习题', src: '4 章 · 习题4-1',
+      q: String.raw`<p>求图示周期锯齿波信号的傅里叶级数展开式。在一个周期 \(0&lt;t&lt;T_0\) 内，</p>
+\[ f(t)=\frac{A}{T_0}t \]
+<p>周期为 \(T_0\)，\(\omega_0=2\pi/T_0\)。</p>`,
+      sol: String.raw`<p><b>直流分量：</b></p>
+\[ a_0=\frac{2}{T_0}\int_0^{T_0}\frac{A}{T_0}t\,\mathrm{d}t
+=\frac{2A}{T_0^2}\cdot\frac{T_0^2}{2}=A \]
+<p>所以直流项为 \(a_0/2=A/2\)。</p>
+<p><b>余弦系数：</b></p>
+\[ a_n=\frac{2}{T_0}\int_0^{T_0}\frac{A}{T_0}t\cos n\omega_0t\,\mathrm{d}t=0\quad(n\ge1) \]
+<p><b>正弦系数：</b>分部积分</p>
+\[ \int_0^{T_0}t\sin n\omega_0t\,\mathrm{d}t
+=\left[-\frac{t\cos n\omega_0t}{n\omega_0}\right]_0^{T_0}
++\int_0^{T_0}\frac{\cos n\omega_0t}{n\omega_0}\,\mathrm{d}t
+=-\frac{T_0}{n\omega_0} \]
+<p>故</p>
+\[ b_n=\frac{2A}{T_0^2}\left(-\frac{T_0}{n\omega_0}\right)
+=-\frac{2A}{n\omega_0T_0}=-\frac{A}{n\pi} \]
+<p>因此</p>
+\[ f(t)=\frac{A}{2}-\frac{A}{\pi}\sum_{n=1}^{\infty}\frac{\sin n\omega_0t}{n} \]
+<p>对应的指数形式系数为 \(F_0=A/2\)，\(F_n=\dfrac{\mathrm{j}A}{2\pi n}\ (n\ne0)\)。</p>
+<p class="ans">答案：\(f(t)=\dfrac{A}{2}-\dfrac{A}{\pi}\displaystyle\sum_{n=1}^{\infty}\dfrac{\sin n\omega_0t}{n}\)。</p>`
+    },
+    {
+      ch: '05 傅里叶级数', type: '习题', src: '4 章 · 习题4-2',
+      q: String.raw`<p>求信号 \(f(t)=\sin 2t\) 的指数形式傅里叶级数系数。</p>`,
+      sol: String.raw`<p>用欧拉公式：</p>
+\[ \sin 2t=\frac{e^{\mathrm{j}2t}-e^{-\mathrm{j}2t}}{2\mathrm{j}}
+=-\frac{\mathrm{j}}2e^{\mathrm{j}2t}+\frac{\mathrm{j}}2e^{-\mathrm{j}2t} \]
+<p>该信号角频率 \(\omega_0=2\)，周期 \(T=\pi\)。与 \(f(t)=\sum_nF_ne^{\mathrm{j}n\omega_0t}\) 比较：</p>
+\[ F_1=-\frac{\mathrm{j}}2,\qquad F_{-1}=\frac{\mathrm{j}}2 \]
+<p>其余 \(F_n=0\)。幅度谱在 \(n=\pm1\) 处各有一根高度 \(1/2\) 的谱线，相位分别为 \(-\pi/2\) 与 \(\pi/2\)。</p>
+<p class="ans">答案：\(F_{\pm1}=\mp\dfrac{\mathrm{j}}2\)，其余 \(F_n=0\)。</p>`
     }
-    s.remove();
-  });
-  const exerciseItems = Array.from(exerciseBank.querySelectorAll('.quiz')).map(q => {
-    const item = document.createElement('div');
-    item.className = 'exercise-item';
-    q.parentNode.insertBefore(item, q);
-    item.appendChild(q);
-    item.hidden = true;
-    return item;
+  ];
+
+  const exerciseBank = $('#exerciseBank');
+  Array.from(document.querySelectorAll('.slide.layout-quiz')).forEach(s => s.remove());
+  exerciseBank.innerHTML = EXERCISES.map((x, i) => `
+    <div class="exercise-item" data-chapter="${x.ch}" hidden>
+      <div class="ex-top"><span class="ex-badge">${x.type}</span><span class="ex-src">${x.src}</span><span class="ex-idx">${String(i + 1).padStart(2, '0')}</span></div>
+      <div class="ex-q">${x.q}</div>
+      <button class="ex-toggle" type="button" aria-expanded="false">查看详细解析</button>
+      <div class="ex-sol">${x.sol}</div>
+    </div>`).join('');
+  const exerciseItems = Array.from(exerciseBank.querySelectorAll('.exercise-item'));
+  exerciseBank.addEventListener('click', e => {
+    const btn = e.target.closest('.ex-toggle');
+    if (!btn) return;
+    const sol = btn.nextElementSibling;
+    const open = !sol.classList.contains('show');
+    sol.classList.toggle('show', open);
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '收起解析' : '查看详细解析';
+    if (open) renderMath(sol);
   });
   let exerciseIndex = 0;
   let chapterFilter = '';
@@ -4849,7 +4757,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   const helpOverlay = $('#helpOverlay');
   const exerciseOverlay = $('#exerciseOverlay');
   const exProgress = $('#exProgress');
-  const exScore = $('#exScore');
   const exChapter = $('#exChapter');
 
   totalNum.textContent = total;
@@ -4933,7 +4840,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
       if (isCur) l.setAttribute('aria-current', 'true');
       else l.removeAttribute('aria-current');
     });
-    updateScore();
   }
 
   function next(){ go(current + 1, true); }
@@ -4964,20 +4870,11 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
       if (cur) cur.scrollIntoView({ block: 'center' });
     }, 40);
   }
-  function exerciseCorrect(){
-    let c = 0;
-    exerciseItems.forEach(it => {
-      const q = it.querySelector('.quiz');
-      const st = quizState.get(q.dataset.qid);
-      if (st && st.answered && st.correct) c++;
-    });
-    return c;
-  }
   function buildChapterOptions(){
     if (!exChapter) return;
     const chapters = [];
     exerciseItems.forEach(it => {
-      const ch = it.querySelector('.quiz').dataset.chapter;
+      const ch = it.dataset.chapter;
       if (ch && !chapters.includes(ch)) chapters.push(ch);
     });
     chapters.sort((a, b) => {
@@ -4987,7 +4884,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     });
     exChapter.innerHTML = `<option value="">全部（${exerciseItems.length}）</option>` +
       chapters.map(ch => {
-        const count = exerciseItems.filter(it => it.querySelector('.quiz').dataset.chapter === ch).length;
+        const count = exerciseItems.filter(it => it.dataset.chapter === ch).length;
         return `<option value="${ch}">${ch}（${count}）</option>`;
       }).join('');
   }
@@ -4999,7 +4896,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     item.hidden = false;
     renderMath(item);
     if (exProgress) exProgress.textContent = `${exerciseIndex + 1} / ${n}`;
-    if (exScore) exScore.textContent = `${exerciseCorrect()} / ${exerciseItems.length}`;
   }
   function showExercise(i){
     if (!filteredItems.length) return;
@@ -5009,7 +4905,7 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   function setChapter(ch){
     chapterFilter = ch || '';
     filteredItems = chapterFilter
-      ? exerciseItems.filter(it => it.querySelector('.quiz').dataset.chapter === chapterFilter)
+      ? exerciseItems.filter(it => it.dataset.chapter === chapterFilter)
       : exerciseItems;
     exerciseIndex = 0;
     if (exChapter) exChapter.value = chapterFilter;
@@ -5019,27 +4915,16 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     chapterFilter = '';
     filteredItems = exerciseItems;
     if (exChapter) exChapter.value = '';
-    const first = filteredItems.findIndex(it => {
-      const q = it.querySelector('.quiz');
-      return !(quizState.get(q.dataset.qid)?.answered);
-    });
-    showExercise(first >= 0 ? first : 0);
+    showExercise(0);
     openOverlay(exerciseOverlay);
   }
   function resetAllExercises(){
     exerciseItems.forEach(it => {
-      const q = it.querySelector('.quiz');
-      quizState.delete(q.dataset.qid);
-      $$('.option', q).forEach(o => {
-        o.disabled = false;
-        o.classList.remove('is-correct', 'is-wrong');
-      });
-      const ex = $('.quiz-explain', q);
-      if (ex) ex.classList.remove('show');
-      const st = $('.quiz-status', q);
-      if (st) { st.textContent = ''; st.classList.remove('ok', 'no'); }
+      const sol = $('.ex-sol', it);
+      if (sol) sol.classList.remove('show');
+      const btn = $('.ex-toggle', it);
+      if (btn) { btn.textContent = '查看详细解析'; btn.setAttribute('aria-expanded', 'false'); }
     });
-    updateScore();
     showExercise(0);
   }
   $('#tocBtn').addEventListener('click', openToc);
@@ -5121,68 +5006,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     box.hidden = open;
   });
 
-  // quiz logic
-  const quizState = new Map();
-  function updateScore(){
-    const quizzes = $$('.quiz');
-    let answered = 0, correct = 0;
-    quizzes.forEach(q => {
-      const st = quizState.get(q.dataset.qid);
-      if (st && st.answered) { answered++; if (st.correct) correct++; }
-    });
-    $$('[data-score]').forEach(el => {
-      el.textContent = `${correct} / ${quizzes.length}`;
-    });
-    $$('[data-score-total]').forEach(el => el.textContent = quizzes.length);
-    if (exScore) exScore.textContent = `${correct} / ${quizzes.length}`;
-  }
-  function setQuiz(q, choice){
-    if (quizState.get(q.dataset.qid)?.answered) return;
-    const opts = $$('.option', q);
-    const correct = choice.dataset.correct === 'true';
-    quizState.set(q.dataset.qid, {answered: true, correct});
-    opts.forEach(o => {
-      o.disabled = true;
-      if (o.dataset.correct === 'true') o.classList.add('is-correct');
-    });
-    if (!correct) choice.classList.add('is-wrong');
-    const ex = $('.quiz-explain', q);
-    if (ex) {
-      ex.classList.add('show');
-      renderMath(ex);
-    }
-    const st = $('.quiz-status', q);
-    if (st) {
-      st.textContent = correct ? '答对了 — 继续' : '再看一眼正确项';
-      st.classList.toggle('ok', correct);
-      st.classList.toggle('no', !correct);
-    }
-    updateScore();
-  }
-  document.addEventListener('click', e => {
-    const opt = e.target.closest('.option');
-    if (opt) {
-      const q = opt.closest('.quiz');
-      if (q) setQuiz(q, opt);
-      return;
-    }
-    const reset = e.target.closest('.reset-quiz');
-    if (reset) {
-      const q = reset.closest('.quiz');
-      if (!q) return;
-      quizState.delete(q.dataset.qid);
-      $$('.option', q).forEach(o => {
-        o.disabled = false;
-        o.classList.remove('is-correct', 'is-wrong');
-      });
-      const ex = $('.quiz-explain', q);
-      if (ex) ex.classList.remove('show');
-      const st = $('.quiz-status', q);
-      if (st) { st.textContent = ''; st.classList.remove('ok','no'); }
-      updateScore();
-    }
-  });
-
   // hash restore
   function fromHash(){
     const m = location.hash.match(/^#s(\d+)$/);
@@ -5197,7 +5020,6 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   // init
   buildChapterOptions();
   go(fromHash(), false);
-  updateScore();
 
   // print: render all math first
   window.addEventListener('beforeprint', () => slides.forEach(renderMath));
