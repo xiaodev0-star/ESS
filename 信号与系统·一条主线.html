@@ -400,6 +400,20 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
 .ex-sol .ans{color:var(--accent);font-weight:600}
 .ex-sol .katex-display{margin:.4em 0}
 .ex-hint{letter-spacing:.02em}
+.ex-fig{margin:.6rem auto .2rem;max-width:430px}
+.ex-fig svg{display:block;width:100%;height:auto;overflow:visible}
+.ex-fig figcaption{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;color:var(--muted);text-align:center;margin-top:.2rem}
+.ex-figrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.35rem .6rem;margin:.6rem 0 .2rem;align-items:end}
+.ex-figrow .ex-fig{max-width:none;margin:0}
+.ex-fig .ax{stroke:currentColor;stroke-width:1.1;opacity:.55}
+.ex-fig .wave{stroke:var(--accent);stroke-width:2.1;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.ex-fig .guide{stroke:currentColor;stroke-width:1;stroke-dasharray:3 3;opacity:.45;fill:none}
+.ex-fig text{font-family:var(--serif);font-size:13px;fill:currentColor}
+.ex-fig .lab{font-size:12px}
+.ex-fig .small{font-size:10.5px}
+.ex-fig .dot{fill:var(--accent)}
+.ex-fig .stem{stroke:var(--accent);stroke-width:1.8}
+.ex-fig .arrowhead{fill:var(--accent)}
 .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:.5rem .8rem;z-index:100}
 .skip:focus{left:.5rem;top:.5rem}
 
@@ -4156,6 +4170,357 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
   };
   const CHAPTER_ORDER = ['01 信号与系统', '02 基本信号', '03 运算与分解', '04 LTI 与卷积', '05 傅里叶级数'];
 
+  // 题目配套图形（全部为内联 SVG，随屏幕自适应）
+  const FIG = {
+    q8a: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="梯形脉冲波形">
+<line class="ax" x1="40" y1="118" x2="345" y2="118"/>
+<line class="ax" x1="70" y1="132" x2="70" y2="25"/>
+<polyline class="wave" points="135,118 190,65 245,65 300,118"/>
+<line class="guide" x1="190" y1="65" x2="190" y2="118"/>
+<line class="guide" x1="245" y1="65" x2="245" y2="118"/>
+<text x="135" y="136" class="lab" text-anchor="middle">-1</text>
+<text x="190" y="136" class="lab" text-anchor="middle">0</text>
+<text x="245" y="136" class="lab" text-anchor="middle">1</text>
+<text x="300" y="136" class="lab" text-anchor="middle">2</text>
+<text x="63" y="69" class="lab" text-anchor="end">1</text>
+<text x="343" y="133" class="lab" text-anchor="end">t</text>
+<text x="78" y="22" class="lab">f(t)</text>
+</svg>
+<figcaption>题图（1）</figcaption>
+</figure>`,
+    q8b: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="阶跃与斜坡组合波形">
+<line class="ax" x1="40" y1="105" x2="345" y2="105"/>
+<line class="ax" x1="70" y1="145" x2="70" y2="25"/>
+<polyline class="wave" points="85,105 150,105 150,60 200,60 250,135 340,135"/>
+<text x="150" y="123" class="lab" text-anchor="middle">-1</text>
+<text x="200" y="123" class="lab" text-anchor="middle">0</text>
+<text x="250" y="123" class="lab" text-anchor="middle">1</text>
+<text x="63" y="64" class="lab" text-anchor="end">1</text>
+<text x="63" y="139" class="lab" text-anchor="end">-1</text>
+<text x="343" y="120" class="lab" text-anchor="end">t</text>
+<text x="78" y="22" class="lab">f(t)</text>
+</svg>
+<figcaption>题图（2）</figcaption>
+</figure>`,
+    q10: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="原信号f(t)波形">
+<line class="ax" x1="35" y1="118" x2="345" y2="118"/>
+<line class="ax" x1="42" y1="132" x2="42" y2="25"/>
+<polyline class="wave" points="50,118 50,60 160,60 325,118"/>
+<line class="guide" x1="160" y1="60" x2="160" y2="118"/>
+<text x="50" y="136" class="lab" text-anchor="middle">-2</text>
+<text x="160" y="136" class="lab" text-anchor="middle">0</text>
+<text x="325" y="136" class="lab" text-anchor="middle">3</text>
+<text x="35" y="64" class="lab" text-anchor="end">1</text>
+<text x="343" y="133" class="lab" text-anchor="end">t</text>
+<text x="52" y="22" class="lab">f(t)</text>
+</svg>
+<figcaption>原信号 f(t)</figcaption>
+</figure>`,
+    q10sol: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="f(6-2t)结果波形">
+<line class="ax" x1="35" y1="118" x2="345" y2="118"/>
+<line class="ax" x1="42" y1="132" x2="42" y2="25"/>
+<polyline class="wave" points="50,118 120,118 180,65 220,65 220,118"/>
+<line class="guide" x1="120" y1="65" x2="120" y2="118"/>
+<line class="guide" x1="180" y1="65" x2="180" y2="118"/>
+<text x="120" y="136" class="lab" text-anchor="middle">1.5</text>
+<text x="180" y="136" class="lab" text-anchor="middle">3</text>
+<text x="220" y="136" class="lab" text-anchor="middle">4</text>
+<text x="35" y="69" class="lab" text-anchor="end">1</text>
+<text x="343" y="133" class="lab" text-anchor="end">t</text>
+<text x="52" y="22" class="lab">f(6-2t)</text>
+</svg>
+<figcaption>结果波形：先升到 1，再保持到 t=4</figcaption>
+</figure>`,
+    q12: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="分段信号f(t)波形">
+<line class="ax" x1="45" y1="118" x2="345" y2="118"/>
+<line class="ax" x1="52" y1="132" x2="52" y2="25"/>
+<polyline class="wave" points="55,118 90,118 160,65 230,65 230,118"/>
+<line class="guide" x1="160" y1="65" x2="160" y2="118"/>
+<line class="guide" x1="230" y1="65" x2="230" y2="118"/>
+<text x="90" y="136" class="lab" text-anchor="middle">0</text>
+<text x="160" y="136" class="lab" text-anchor="middle">1</text>
+<text x="230" y="136" class="lab" text-anchor="middle">2</text>
+<text x="45" y="69" class="lab" text-anchor="end">1</text>
+<text x="343" y="133" class="lab" text-anchor="end">t</text>
+<text x="62" y="22" class="lab">f(t)</text>
+</svg>
+<figcaption>题图：斜坡 + 平台</figcaption>
+</figure>`,
+    q12sol: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="f(-2t+2)结果波形">
+<line class="ax" x1="40" y1="118" x2="345" y2="118"/>
+<line class="ax" x1="50" y1="132" x2="50" y2="25"/>
+<polyline class="wave" points="80,65 120,65 160,118"/>
+<line class="guide" x1="120" y1="65" x2="120" y2="118"/>
+<text x="80" y="136" class="lab" text-anchor="middle">0</text>
+<text x="120" y="136" class="lab" text-anchor="middle">0.5</text>
+<text x="160" y="136" class="lab" text-anchor="middle">1</text>
+<text x="40" y="69" class="lab" text-anchor="end">1</text>
+<text x="343" y="133" class="lab" text-anchor="end">t</text>
+<text x="60" y="22" class="lab">f(-2t+2)</text>
+</svg>
+<figcaption>结果波形：平台 0.5，随后线性降到 0</figcaption>
+</figure>`,
+    q13: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="f(t)奇偶分解原波形">
+<line class="ax" x1="40" y1="120" x2="345" y2="120"/>
+<line class="ax" x1="70" y1="135" x2="70" y2="25"/>
+<polyline class="wave" points="100,90 180,90 180,120 220,60 260,120"/>
+<line class="guide" x1="220" y1="60" x2="220" y2="120"/>
+<text x="100" y="136" class="lab" text-anchor="middle">-1</text>
+<text x="180" y="136" class="lab" text-anchor="middle">0</text>
+<text x="220" y="136" class="lab" text-anchor="middle">0.5</text>
+<text x="260" y="136" class="lab" text-anchor="middle">1</text>
+<text x="63" y="94" class="lab" text-anchor="end">1</text>
+<text x="63" y="64" class="lab" text-anchor="end">2</text>
+<text x="343" y="135" class="lab" text-anchor="end">t</text>
+<text x="78" y="22" class="lab">f(t)</text>
+</svg>
+<figcaption>原信号 f(t)</figcaption>
+</figure>`,
+    q14a: `<figure class="ex-fig">
+<svg viewBox="0 0 240 130" role="img" aria-label="f1(t)矩形脉冲">
+<line class="ax" x1="30" y1="105" x2="225" y2="105"/>
+<line class="ax" x1="42" y1="118" x2="42" y2="22"/>
+<polyline class="wave" points="60,105 80,105 80,55 150,55 150,105 220,105"/>
+<text x="80" y="121" class="lab" text-anchor="middle">0</text>
+<text x="150" y="121" class="lab" text-anchor="middle">1</text>
+<text x="36" y="59" class="lab" text-anchor="end">1</text>
+<text x="220" y="120" class="lab" text-anchor="end">t</text>
+<text x="48" y="20" class="lab">f₁(t)</text>
+</svg>
+<figcaption>f₁(t)=u(t)-u(t-1)</figcaption>
+</figure>`,
+    q14b: `<figure class="ex-fig">
+<svg viewBox="0 0 240 130" role="img" aria-label="y1(t)指数衰减">
+<line class="ax" x1="30" y1="105" x2="225" y2="105"/>
+<line class="ax" x1="42" y1="118" x2="42" y2="22"/>
+<path class="wave" d="M50,55 C70,75 100,95 210,98"/>
+<text x="36" y="59" class="lab" text-anchor="end">1</text>
+<text x="220" y="120" class="lab" text-anchor="end">t</text>
+<text x="48" y="20" class="lab">y₁(t)</text>
+</svg>
+<figcaption>y₁(t)=e⁻²ᵗu(t)</figcaption>
+</figure>`,
+    q14c: `<figure class="ex-fig">
+<svg viewBox="0 0 240 130" role="img" aria-label="f2(t)先斜坡后平台">
+<line class="ax" x1="25" y1="105" x2="225" y2="105"/>
+<line class="ax" x1="37" y1="118" x2="37" y2="22"/>
+<polyline class="wave" points="40,105 50,105 100,55 220,55"/>
+<text x="50" y="121" class="lab" text-anchor="middle">-1</text>
+<text x="100" y="121" class="lab" text-anchor="middle">0</text>
+<text x="31" y="59" class="lab" text-anchor="end">1</text>
+<text x="220" y="120" class="lab" text-anchor="end">t</text>
+<text x="43" y="20" class="lab">f₂(t)</text>
+</svg>
+<figcaption>f₂(t)：先斜坡，后保持 1</figcaption>
+</figure>`,
+    q24f: `<figure class="ex-fig">
+<svg viewBox="0 0 240 130" role="img" aria-label="f(t)矩形脉冲">
+<line class="ax" x1="35" y1="105" x2="225" y2="105"/>
+<line class="ax" x1="50" y1="118" x2="50" y2="22"/>
+<polyline class="wave" points="70,105 80,105 80,55 160,55 160,105 210,105"/>
+<text x="80" y="121" class="lab" text-anchor="middle">-0.5</text>
+<text x="120" y="121" class="lab" text-anchor="middle">0</text>
+<text x="160" y="121" class="lab" text-anchor="middle">0.5</text>
+<text x="44" y="59" class="lab" text-anchor="end">1</text>
+<text x="222" y="120" class="lab" text-anchor="end">t</text>
+<text x="56" y="20" class="lab">f(t)</text>
+</svg>
+<figcaption>f(t)：宽 1、中心在原点的矩形</figcaption>
+</figure>`,
+    q24h: `<figure class="ex-fig">
+<svg viewBox="0 0 240 130" role="img" aria-label="h(t)矩形脉冲">
+<line class="ax" x1="35" y1="105" x2="225" y2="105"/>
+<line class="ax" x1="50" y1="118" x2="50" y2="22"/>
+<polyline class="wave" points="70,105 80,105 80,55 160,55 160,105 210,105"/>
+<text x="80" y="121" class="lab" text-anchor="middle">-0.5</text>
+<text x="120" y="121" class="lab" text-anchor="middle">0</text>
+<text x="160" y="121" class="lab" text-anchor="middle">0.5</text>
+<text x="44" y="59" class="lab" text-anchor="end">1</text>
+<text x="222" y="120" class="lab" text-anchor="end">t</text>
+<text x="56" y="20" class="lab">h(t)</text>
+</svg>
+<figcaption>h(t)：与 f(t) 相同的矩形</figcaption>
+</figure>`,
+    q24sol: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="两矩形卷积得到三角脉冲">
+<line class="ax" x1="35" y1="118" x2="345" y2="118"/>
+<line class="ax" x1="42" y1="132" x2="42" y2="25"/>
+<polyline class="wave" points="70,118 150,55 230,118"/>
+<line class="guide" x1="150" y1="55" x2="150" y2="118"/>
+<text x="70" y="136" class="lab" text-anchor="middle">-1</text>
+<text x="150" y="136" class="lab" text-anchor="middle">0</text>
+<text x="230" y="136" class="lab" text-anchor="middle">1</text>
+<text x="35" y="59" class="lab" text-anchor="end">1</text>
+<text x="343" y="133" class="lab" text-anchor="end">t</text>
+<text x="52" y="22" class="lab">y(t)</text>
+</svg>
+<figcaption>卷积结果：三角形，峰值 1</figcaption>
+</figure>`,
+    q26f: `<figure class="ex-fig">
+<svg viewBox="0 0 240 130" role="img" aria-label="f(t)宽1矩形">
+<line class="ax" x1="35" y1="105" x2="225" y2="105"/>
+<line class="ax" x1="50" y1="118" x2="50" y2="22"/>
+<polyline class="wave" points="60,105 90,105 90,55 160,55 160,105 210,105"/>
+<text x="90" y="121" class="lab" text-anchor="middle">0</text>
+<text x="160" y="121" class="lab" text-anchor="middle">1</text>
+<text x="44" y="59" class="lab" text-anchor="end">1</text>
+<text x="222" y="120" class="lab" text-anchor="end">t</text>
+<text x="56" y="20" class="lab">f(t)</text>
+</svg>
+<figcaption>f(t)=u(t)-u(t-1)</figcaption>
+</figure>`,
+    q26h: `<figure class="ex-fig">
+<svg viewBox="0 0 240 130" role="img" aria-label="h(t)宽2矩形">
+<line class="ax" x1="30" y1="105" x2="225" y2="105"/>
+<line class="ax" x1="45" y1="118" x2="45" y2="22"/>
+<polyline class="wave" points="50,105 80,105 80,55 200,55 200,105 220,105"/>
+<text x="80" y="121" class="lab" text-anchor="middle">0</text>
+<text x="200" y="121" class="lab" text-anchor="middle">2</text>
+<text x="39" y="59" class="lab" text-anchor="end">1</text>
+<text x="220" y="120" class="lab" text-anchor="end">t</text>
+<text x="51" y="20" class="lab">h(t)</text>
+</svg>
+<figcaption>h(t)=u(t)-u(t-2)</figcaption>
+</figure>`,
+    q31: `<figure class="ex-fig">
+<svg viewBox="0 0 380 160" role="img" aria-label="周期方波">
+<line class="ax" x1="30" y1="90" x2="360" y2="90"/>
+<line class="ax" x1="40" y1="130" x2="40" y2="25"/>
+<polyline class="wave" points="40,60 100,60 100,120 160,120 160,60 220,60 220,120 280,120 280,60 340,60"/>
+<line class="guide" x1="100" y1="60" x2="100" y2="120"/>
+<line class="guide" x1="160" y1="60" x2="160" y2="120"/>
+<text x="40" y="136" class="lab" text-anchor="middle">0</text>
+<text x="100" y="136" class="lab" text-anchor="middle">T₀/2</text>
+<text x="160" y="136" class="lab" text-anchor="middle">T₀</text>
+<text x="33" y="64" class="lab" text-anchor="end">1</text>
+<text x="33" y="124" class="lab" text-anchor="end">-1</text>
+<text x="350" y="105" class="lab" text-anchor="end">t</text>
+<text x="48" y="20" class="lab">f(t)</text>
+</svg>
+<figcaption>周期方波（周期 T₀）</figcaption>
+</figure>`,
+    q32: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="周期矩形脉冲">
+<line class="ax" x1="30" y1="105" x2="360" y2="105"/>
+<line class="ax" x1="40" y1="125" x2="40" y2="25"/>
+<polyline class="wave" points="40,105 100,105 100,55 140,55 140,105 210,105 210,55 250,55 250,105 320,105 320,55 350,55"/>
+<line class="guide" x1="100" y1="112" x2="140" y2="112"/>
+<text x="120" y="126" class="lab" text-anchor="middle">τ</text>
+<text x="230" y="126" class="lab" text-anchor="middle">T</text>
+<text x="33" y="59" class="lab" text-anchor="end">A</text>
+<text x="353" y="102" class="lab" text-anchor="end">t</text>
+<text x="48" y="20" class="lab">f(t)</text>
+</svg>
+<figcaption>周期矩形脉冲（周期 T，脉宽 τ，幅度 A）</figcaption>
+</figure>`,
+    q33: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="周期三角脉冲">
+<line class="ax" x1="30" y1="105" x2="355" y2="105"/>
+<line class="ax" x1="40" y1="125" x2="40" y2="25"/>
+<polyline class="wave" points="40,105 95,55 150,105 205,55 260,105 315,55 340,78"/>
+<text x="95" y="121" class="lab" text-anchor="middle">-1</text>
+<text x="150" y="121" class="lab" text-anchor="middle">0</text>
+<text x="205" y="121" class="lab" text-anchor="middle">1</text>
+<text x="260" y="121" class="lab" text-anchor="middle">2</text>
+<text x="33" y="59" class="lab" text-anchor="end">1</text>
+<text x="350" y="102" class="lab" text-anchor="end">t</text>
+<text x="48" y="20" class="lab">f(t)</text>
+</svg>
+<figcaption>周期三角脉冲（T=2）</figcaption>
+</figure>`,
+    q35: `<figure class="ex-fig">
+<svg viewBox="0 0 380 140" role="img" aria-label="周期冲激串">
+<line class="ax" x1="30" y1="110" x2="355" y2="110"/>
+<line class="stem" x1="70" y1="110" x2="70" y2="58"/><polygon class="arrowhead" points="65,65 70,52 75,65"/>
+<line class="stem" x1="130" y1="110" x2="130" y2="58"/><polygon class="arrowhead" points="125,65 130,52 135,65"/>
+<line class="stem" x1="190" y1="110" x2="190" y2="58"/><polygon class="arrowhead" points="185,65 190,52 195,65"/>
+<line class="stem" x1="250" y1="110" x2="250" y2="58"/><polygon class="arrowhead" points="245,65 250,52 255,65"/>
+<line class="stem" x1="310" y1="110" x2="310" y2="58"/><polygon class="arrowhead" points="305,65 310,52 315,65"/>
+<text x="196" y="44" class="lab">(1)</text>
+<text x="70" y="127" class="small" text-anchor="middle">-2T</text>
+<text x="130" y="127" class="small" text-anchor="middle">-T</text>
+<text x="190" y="127" class="small" text-anchor="middle">0</text>
+<text x="250" y="127" class="small" text-anchor="middle">T</text>
+<text x="310" y="127" class="small" text-anchor="middle">2T</text>
+<text x="350" y="105" class="lab" text-anchor="end">t</text>
+<text x="45" y="25" class="lab">δ_T(t)</text>
+</svg>
+<figcaption>周期冲激串 δ_T(t)=Σδ(t-kT)</figcaption>
+</figure>`,
+    q36: `<figure class="ex-fig">
+<svg viewBox="0 0 380 160" role="img" aria-label="周期为4的两电平方波">
+<line class="ax" x1="30" y1="130" x2="360" y2="130"/>
+<line class="ax" x1="40" y1="142" x2="40" y2="40"/>
+<polyline class="wave" points="40,100 100,100 100,70 160,70 160,100 220,100 220,70 280,70 280,100 340,100"/>
+<line class="guide" x1="100" y1="70" x2="100" y2="100"/>
+<line class="guide" x1="160" y1="70" x2="160" y2="100"/>
+<line class="guide" x1="220" y1="70" x2="220" y2="100"/>
+<line class="guide" x1="280" y1="70" x2="280" y2="100"/>
+<text x="100" y="146" class="lab" text-anchor="middle">-3</text>
+<text x="160" y="146" class="lab" text-anchor="middle">-1</text>
+<text x="190" y="146" class="lab" text-anchor="middle">0</text>
+<text x="220" y="146" class="lab" text-anchor="middle">1</text>
+<text x="280" y="146" class="lab" text-anchor="middle">3</text>
+<text x="33" y="104" class="lab" text-anchor="end">1</text>
+<text x="33" y="74" class="lab" text-anchor="end">2</text>
+<text x="350" y="125" class="lab" text-anchor="end">t</text>
+<text x="48" y="28" class="lab">f(t)</text>
+</svg>
+<figcaption>周期 T=4 的 f(t)</figcaption>
+</figure>`,
+    q37: `<figure class="ex-fig">
+<svg viewBox="0 0 380 170" role="img" aria-label="离散幅度谱">
+<line class="ax" x1="30" y1="130" x2="360" y2="130"/>
+<line class="ax" x1="40" y1="155" x2="40" y2="55"/>
+<line class="stem" x1="85" y1="130" x2="85" y2="100"/><circle class="dot" cx="85" cy="100" r="3"/>
+<line class="stem" x1="120" y1="130" x2="120" y2="115"/><circle class="dot" cx="120" cy="115" r="3"/>
+<line class="stem" x1="155" y1="130" x2="155" y2="85"/><circle class="dot" cx="155" cy="85" r="3"/>
+<line class="stem" x1="190" y1="130" x2="190" y2="70"/><circle class="dot" cx="190" cy="70" r="3"/>
+<line class="stem" x1="225" y1="130" x2="225" y2="85"/><circle class="dot" cx="225" cy="85" r="3"/>
+<line class="stem" x1="260" y1="130" x2="260" y2="115"/><circle class="dot" cx="260" cy="115" r="3"/>
+<line class="stem" x1="295" y1="130" x2="295" y2="100"/><circle class="dot" cx="295" cy="100" r="3"/>
+<text x="85" y="93" class="small" text-anchor="middle">2</text>
+<text x="120" y="108" class="small" text-anchor="middle">1</text>
+<text x="155" y="78" class="small" text-anchor="middle">3</text>
+<text x="190" y="63" class="small" text-anchor="middle">4</text>
+<text x="225" y="78" class="small" text-anchor="middle">3</text>
+<text x="260" y="108" class="small" text-anchor="middle">1</text>
+<text x="295" y="93" class="small" text-anchor="middle">2</text>
+<text x="85" y="148" class="small" text-anchor="middle">-3ω₀</text>
+<text x="120" y="148" class="small" text-anchor="middle">-2ω₀</text>
+<text x="155" y="148" class="small" text-anchor="middle">-ω₀</text>
+<text x="190" y="148" class="small" text-anchor="middle">0</text>
+<text x="225" y="148" class="small" text-anchor="middle">ω₀</text>
+<text x="260" y="148" class="small" text-anchor="middle">2ω₀</text>
+<text x="295" y="148" class="small" text-anchor="middle">3ω₀</text>
+<text x="35" y="52" class="lab" text-anchor="end">Fₙ</text>
+<text x="355" y="145" class="lab" text-anchor="end">ω</text>
+</svg>
+<figcaption>离散幅度谱（谱线间隔 ω₀）</figcaption>
+</figure>`,
+    q40: `<figure class="ex-fig">
+<svg viewBox="0 0 380 150" role="img" aria-label="周期锯齿波">
+<line class="ax" x1="35" y1="105" x2="355" y2="105"/>
+<line class="ax" x1="45" y1="125" x2="45" y2="25"/>
+<polyline class="wave" points="80,105 200,55 200,105 320,55 320,105"/>
+<text x="80" y="121" class="lab" text-anchor="middle">0</text>
+<text x="200" y="121" class="lab" text-anchor="middle">T₀</text>
+<text x="320" y="121" class="lab" text-anchor="middle">2T₀</text>
+<text x="38" y="59" class="lab" text-anchor="end">A</text>
+<text x="350" y="102" class="lab" text-anchor="end">t</text>
+<text x="53" y="20" class="lab">f(t)</text>
+</svg>
+<figcaption>周期锯齿波（周期 T₀）</figcaption>
+</figure>`
+  };
+
   // 全部例题与习题（来源：8 份课件 PDF），每题附详细解析
   const EXERCISES = [
     {
@@ -4715,15 +5080,41 @@ ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;le
     }
   ];
 
+  const EX_FIGS = {
+    8: FIG.q8a + FIG.q8b,
+    10: FIG.q10,
+    12: FIG.q12,
+    13: FIG.q13,
+    14: `<div class="ex-figrow">${FIG.q14a}${FIG.q14b}${FIG.q14c}</div>`,
+    24: `<div class="ex-figrow">${FIG.q24f}${FIG.q24h}</div>`,
+    26: `<div class="ex-figrow">${FIG.q26f}${FIG.q26h}</div>`,
+    31: FIG.q31,
+    32: FIG.q32,
+    33: FIG.q33,
+    35: FIG.q35,
+    36: FIG.q36,
+    37: FIG.q37,
+    38: FIG.q32,
+    40: FIG.q40
+  };
+  const EX_SOL_FIGS = {
+    10: FIG.q10sol,
+    12: FIG.q12sol,
+    24: FIG.q24sol
+  };
   const exerciseBank = $('#exerciseBank');
   Array.from(document.querySelectorAll('.slide.layout-quiz')).forEach(s => s.remove());
-  exerciseBank.innerHTML = EXERCISES.map((x, i) => `
+  exerciseBank.innerHTML = EXERCISES.map((x, i) => {
+    const qfig = EX_FIGS[i + 1] || '';
+    const sfig = EX_SOL_FIGS[i + 1] || '';
+    return `
     <div class="exercise-item" data-chapter="${x.ch}" hidden>
       <div class="ex-top"><span class="ex-badge">${x.type}</span><span class="ex-src">${x.src}</span><span class="ex-idx">${String(i + 1).padStart(2, '0')}</span></div>
-      <div class="ex-q">${x.q}</div>
+      <div class="ex-q">${x.q}${qfig}</div>
       <button class="ex-toggle" type="button" aria-expanded="false">查看详细解析</button>
-      <div class="ex-sol">${x.sol}</div>
-    </div>`).join('');
+      <div class="ex-sol">${x.sol}${sfig}</div>
+    </div>`;
+  }).join('');
   const exerciseItems = Array.from(exerciseBank.querySelectorAll('.exercise-item'));
   exerciseBank.addEventListener('click', e => {
     const btn = e.target.closest('.ex-toggle');
